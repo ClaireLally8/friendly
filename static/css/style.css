@@ -23,6 +23,12 @@ label {
   color:var(--dark-blue);
   font-family:"Gilroy Light";
 }
+select {
+  color:var(--green);
+  font-size:16px;
+  font-family:"Gilroy Light";
+  padding:3px;
+}
 .input-wide {
   width:300px;
 }
