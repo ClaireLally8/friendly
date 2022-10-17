@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 overlay-dark">
+        </div>
+        <div class="col-6">
+            <h1 class="py-5">Sign Up</h1>
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-6">
+                    <label>Email Address</label>
+              {{ form.email }}
+                </div>
+                <div class="col-6">
+                    <label>Phone Number</label>
+                    {{ form.tel }}
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>First Name</label>
+              {{ form.first_name }}
+                    </div>
+                    <div class="col-6">
+                         <label>Last Name</label>
+              {{ form.last_name }}
+                    </div>
+              </div>
+              
+              <label>Last Name</label>
+              {{ form.last_name }}
+              <label>Password</label>
+              {{ form.password1 }}
+              <label>Password (again)</label>
+              {{ form.password2 }}
+              <label>Password (again)</label>
+              {{ form.account_type}}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+              <p class="short-par">Already have an account? <br>You can login <a class="par-link" href="{{ login_url }}">here</a>.</p>
+            </form>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}
