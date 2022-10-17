@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'profiles',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -99,8 +101,8 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_FORMS = {
-    'signup': 'account.forms.UserSignUpForm',
-    'login': 'account.forms.UserLoginForm',
+    'signup': 'profiles.forms.SignUpForm',
+    'login': 'profiles.forms.LoginForm',
 }
 
 # Password validation
