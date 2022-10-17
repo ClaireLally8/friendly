@@ -1,3 +1,4 @@
+from django import forms
 from pathlib import Path
 
 import os
@@ -97,7 +98,10 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
-
+ACCOUNT_FORMS = {
+    'signup': 'account.forms.UserSignUpForm',
+    'login': 'account.forms.UserLoginForm',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
