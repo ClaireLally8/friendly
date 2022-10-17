@@ -1,0 +1,22 @@
+nav {
+    font-family:Roboto;
+    font-weight:500;
+    font-size:18px;
+}
+.nav-link {
+    color:var(--dark-blue);
+}
+.nav-link:hover {
+    color: var(--dark-blue);
+    text-decoration:underline;
+}
+.nav-button {
+    background-color: var(--dark-blue);
+    color:white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.nav-button:hover {
+    color:white;
+    text-decoration:underline;
+}
