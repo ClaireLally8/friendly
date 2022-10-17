@@ -37,3 +37,5 @@ class UserLoginForm(LoginForm):
         super(UserLoginForm, self).__init__(*args, **kwargs)
         del self.fields['login'].widget.attrs['placeholder']
         del self.fields['password'].widget.attrs['placeholder']
+        self.fields['login'].widget = forms.TextInput(attrs={'class': 'input-wide'})
+        self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'input-wide'})

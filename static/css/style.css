@@ -13,3 +13,41 @@
 	--green:#52AB98;
 	--grey:#F2F2F2;
 }
+h1{
+  font-family: 'Gilroy-ExtraBold';
+  color:var(--dark-blue);
+  letter-spacing:0.4px;
+  font-size:50px;
+}
+label {
+  color:var(--dark-blue);
+  font-family:"Gilroy Light";
+}
+.input-wide {
+  width:300px;
+}
+.secondaryAction {
+  color:var(--green);
+  text-decoration:underline;
+  font-family:"Gilroy Light";
+}
+.primaryAction {
+  font-family: 'Gilroy-Light';
+  background-color: var(--grey);
+  color:var(--dark-blue);
+  border:none;
+  width:200px;
+  line-height: 1.5;
+}
+.short-par {
+  color:var(--dark-blue);
+  font-family:"Gilroy Light";
+}
+.par-link {
+  color:var(--green);
+  font-family:"Gilroy Light";
+  text-decoration:underline;
+}
+.overlay{
+  background-color:var(--blue);
+}
