@@ -15,24 +15,31 @@ class UserSignUpForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super(UserSignUpForm, self).__init__(*args, **kwargs)
         
+        del self.fields['username']
         del self.fields['email'].widget.attrs['placeholder']
         del self.fields['password1'].widget.attrs['placeholder']
         del self.fields['password2'].widget.attrs['placeholder']
 
         self.fields['first_name'].widget.attrs.update({
-            'class': 'required input-splt',
+            'class': 'required  input-wide',
         })
         self.fields['last_name'].widget.attrs.update({
-            'class': 'required',
+            'class': 'required input-wide',
         })
         self.fields['email'].widget.attrs.update({
-            'class': 'required',
+            'class': 'required input-wide',
         })
         self.fields['tel'].widget.attrs.update({
-            'class': 'required',
+            'class': 'required input-wide',
         })
         self.fields['account_type'].widget.attrs.update({
-            'class': 'required', 'type':'radio',
+            'class': 'required input-wide',
+        })
+        self.fields['password1'].widget.attrs.update({
+            'class': 'required input-wide',
+        })
+        self.fields['password2'].widget.attrs.update({
+            'class': 'required input-wide',
         })
 
     def custom_signup(self, request, user):
