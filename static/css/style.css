@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@font-face {
+    font-family: Gilroy Light;
+    src: url(../fonts/Gilroy-Light.otf);
+  }
+  @font-face {
+    font-family: Gilroy ExtraBold;
+    src: url(../fonts/Gilroy-ExtraBold.otf);
+  }
+:root {
+	--dark-blue:#2B6777;
+	--blue: #C8D8E4;
+	--green:#52AB98;
+	--grey:#F2F2F2;
+}
+.nav-button {
+    background-color: var(--dark-blue);
+    color:white;
+    font-family: 'Roboto';
+}
