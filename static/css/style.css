@@ -51,3 +51,6 @@ label {
 .overlay{
   background-color:var(--blue);
 }
+.overlay-dark{
+  background-color:var(--dark-blue);
+}
