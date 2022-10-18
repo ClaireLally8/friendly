@@ -101,8 +101,8 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_FORMS = {
-    'signup': 'profiles.forms.SignUpForm',
-    'login': 'profiles.forms.LoginForm',
+    'signup': 'profiles.forms.UserSignUpForm',
+    'login': 'profiles.forms.UserLoginForm',
 }
 
 # Password validation
