@@ -11,9 +11,13 @@
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
               {% csrf_token %}
               <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <label class="mt-2">Account Type</label>
                     <div>{{ form.account_type}}</div>
+                </div>
+                <div class="col-6">
+                    <label class="mt-2">Username</label>
+                    <div>{{ form.username}}</div>
                 </div>
                 <div class="col-6 mt-2">
                     <label>Email Address</label>
