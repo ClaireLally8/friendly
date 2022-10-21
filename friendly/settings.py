@@ -99,7 +99,7 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/activities'
 ACCOUNT_FORMS = {
     'signup': 'profiles.forms.UserSignUpForm',
     'login': 'profiles.forms.UserLoginForm',
