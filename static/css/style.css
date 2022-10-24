@@ -19,6 +19,13 @@ h1{
   letter-spacing:0.4px;
   font-size:50px;
 }
+h2 {
+  font-family: 'Gilroy-ExtraBold';
+  color:var(--dark-blue);
+  font-size:28px;
+  letter-spacing:0.5px;
+
+}
 label {
   color:var(--dark-blue);
   font-family:"Gilroy Light";
