@@ -5,13 +5,15 @@
 <h2>Listings for Today</h2>
 <div class="overlay-dark py-5">
     <div class="ms-3">
-        {% include 'includes/activity_card.html' %}
+        {% for activity in activities %}
+        {% include 'includes/activity_card.html' with activity=activity %}
+        {% endfor %}
     </div>
 </div>
 <h2>Future Listings</h2>
 <div class="overlay-dark py-5">
     <div class="ms-3">
-        {% include 'includes/activity_card.html' %}
+        {% include 'includes/activity_card.html' with form=form %}
     </div>
 </div>
 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Post new Listing

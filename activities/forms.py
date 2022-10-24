@@ -5,8 +5,8 @@ class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
         fields = ('host', 'name', 'date',
-                  'start_time', 'end_time',
-                  'duration', 'location', 'description')
+                  'start_time', 'end_time', 
+                  'location', 'description')
 
     def __init__(self, *args, **kwargs):
         """
@@ -19,7 +19,6 @@ class ActivityForm(forms.ModelForm):
             'date': 'Date of Activity',
             'start_time': 'Start Time',
             'end_time': 'End Time',
-            'duration': 'Duration',
             'location': 'Location',
             'description': 'Description',
             'host': 'Host',
