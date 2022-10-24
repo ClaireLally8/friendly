@@ -6,7 +6,9 @@
 <div class="overlay-dark py-5">
     <div class="ms-3">
         {% for activity in activities %}
+        {% if activity.date == today %}
         {% include 'includes/activity_card.html' with activity=activity %}
+        {% endif %}
         {% endfor %}
     </div>
 </div>
