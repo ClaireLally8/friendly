@@ -5,11 +5,17 @@
 <h2>Listings for Today</h2>
 <div class="overlay-dark py-5">
     <div class="ms-3">
-        {% for activity in activities %}
+        {% for activity in page_obj %}
         {% if activity.date == today %}
         {% include 'includes/activity_card.html' with activity=activity %}
         {% endif %}
         {% endfor %}
+        {% if page_obj.has_previous %}
+        <a class="change-page-link" href="?page={{ page_obj.previous_page_number }}">previous page</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <a class="change-page-link" href="?page={{ page_obj.next_page_number }}">next page</a>
+        {% endif %}
     </div>
 </div>
 <h2>Future Listings</h2>
@@ -20,7 +26,6 @@
 </div>
 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Post new Listing
   </button>
-   <!-- Modal -->
    <div class="modal fade"
    id="staticBackdrop"
    data-mdb-backdrop="static"
@@ -28,8 +33,8 @@
    tabindex="-1"
    aria-labelledby="staticBackdropLabel"
    aria-hidden="true"
- >
- {% include 'includes/activity_modal.html' with form=form %}
+>
+   {% include 'includes/activity_modal.html' with form=form %}
  </div>
 
 {% endblock %}

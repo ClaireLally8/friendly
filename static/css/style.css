@@ -36,6 +36,11 @@ select {
   font-family:"Gilroy Light";
   padding:3px;
 }
+.btn-primary {
+  background-color: var(--grey);
+  color:var(--dark-blue);
+  font-family: "Gilroy ExtraBold";
+}
 .input-wide {
   width:300px;
 }

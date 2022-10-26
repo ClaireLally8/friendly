@@ -2,18 +2,22 @@ import uuid
 from django.db import models
 from django.conf import settings
 
+from profiles.models import UserProfile
+
+from datetime import datetime, date
+
 # Create your models here.
 class Activity(models.Model):
     class Meta:
         verbose_name_plural = 'Activities'
 
     activity_id = models.CharField(max_length=32, null=False, editable=False)
-    host = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    host = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=254, null=False, blank=False)
     date = models.DateField()
     start_time =models.TimeField()
     end_time = models.TimeField()
-    duration = models.DurationField()
+    duration = models.DurationField(blank=True, null=True)
     location = models.CharField(max_length=40, null=False, blank=False)
     description = models.CharField(max_length=140, null=False, blank=False)
     available = models.BooleanField(default=True)
@@ -22,7 +26,7 @@ class Activity(models.Model):
         return uuid.uuid4().hex.upper()
 
     def _generate_activity_duration(self):
-        return self.end_time - self.start_time
+        return datetime.combine(date.today(), self.end_time) - datetime.combine(date.today(), self.start_time)
 
     def save(self, *args, **kwargs):
         """
