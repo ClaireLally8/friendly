@@ -12,6 +12,7 @@
 	--blue: #C8D8E4;
 	--green:#52AB98;
 	--grey:#F2F2F2;
+  --green-secondary:#3f8375;
 }
 h1{
   font-family: 'Gilroy-ExtraBold';
@@ -37,9 +38,28 @@ select {
   padding:3px;
 }
 .btn-primary {
-  background-color: var(--grey);
-  color:var(--dark-blue);
+  background-color: var(--green);
+  color:var(--grey);
   font-family: "Gilroy ExtraBold";
+  box-shadow:0px 3px 6px -4px #000000;
+  letter-spacing: 1px;
+  font-size:16px;
+  text-transform: none;
+}
+.btn-primary:hover {
+  background-color: var(--green-secondary);
+
+  transition: background-color 0.8s ease;
+  color:var(--grey);
+  font-family: "Gilroy ExtraBold";
+  border: none;
+  box-shadow:0px 3px 6px -4px #000000;
+}
+.btn-primary:focus{
+  background-color: var(--green-secondary);
+  border: 1px #32695d;
+  box-shadow:0px 3px 6px -4px #000000;
+  color:var(--grey);
 }
 .input-wide {
   width:300px;
