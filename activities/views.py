@@ -1,3 +1,5 @@
+from cProfile import Profile
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
@@ -5,7 +7,8 @@ from .forms import ActivityForm
 from .models import Activity, Request
 
 from datetime import date
-# Create your views here.
+from .helpers import get_userprofile
+
 def activities(request):
     form = ActivityForm()
     activities = Activity.objects.all()
@@ -20,9 +23,11 @@ def activities(request):
 
 def create_activity(request):
     if request.method == "POST":
-        form = ActivityForm(request.POST)
-        form.save()
-        return redirect('activities')
+        userprofile = get_userprofile(request)
+        form = ActivityForm(request.POST, instance=userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('activities')
     else:
         form = ActivityForm()
         context = {
