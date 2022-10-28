@@ -1,5 +1,8 @@
+from datetime import date
 from django import forms
 from .models import Activity
+
+from .widgets import DatePickerInput, TimePickerInput
 
 class ActivityForm(forms.ModelForm):
     class Meta:
@@ -14,4 +17,10 @@ class ActivityForm(forms.ModelForm):
             'end_time': 'End Time',
             'location': 'Location',
             'description': 'Description',
+        }
+        widgets = {
+            'date' : DatePickerInput(),
+            'start_time' : TimePickerInput(),
+            'end_time' : TimePickerInput(),
+
         }

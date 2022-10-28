@@ -1,63 +1,60 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
-@font-face {
-    font-family: Gilroy Light;
-    src: url(../fonts/Gilroy-Light.otf);
-  }
-  @font-face {
-    font-family: Gilroy ExtraBold;
-    src: url(../fonts/Gilroy-ExtraBold.otf);
-  }
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap');
 :root {
-	--dark-blue:#2B6777;
-	--blue: #C8D8E4;
-	--green:#52AB98;
+	--dark-blue:#2B697A;
+	--blue: #e9eef2;
+	--green:#48ac98;
+  --green-dark: #388a7c;
 	--grey:#F2F2F2;
-  --green-secondary:#3f8375;
+  --primary-font: "Source Sans Pro";
+  --heading-font: "Bebas Neue";
 }
 h1{
-  font-family: 'Gilroy-ExtraBold';
+  font-family: var(--heading-font);
   color:var(--dark-blue);
   letter-spacing:0.4px;
   font-size:50px;
 }
 h2 {
-  font-family: 'Gilroy-ExtraBold';
+  font-family: var(--heading-font);
   color:var(--dark-blue);
   font-size:28px;
   letter-spacing:0.5px;
-
 }
 label {
   color:var(--dark-blue);
-  font-family:"Gilroy Light";
+  font-family: var(--primary-font);
+  font-weight:300
+}
+a {
+  color:var(--green);
+}
+a:hover{
+  text-decoration: underline;
+  color:var(--green);
 }
 select {
   color:var(--green);
   font-size:16px;
-  font-family:"Gilroy Light";
+  font-family: var(--primary-font);
   padding:3px;
 }
 .btn-primary {
   background-color: var(--green);
   color:var(--grey);
-  font-family: "Gilroy ExtraBold";
-  box-shadow:0px 3px 6px -4px #000000;
+  font-family:  var(--primary-font);
   letter-spacing: 1px;
   font-size:16px;
   text-transform: none;
+  letter-spacing: 1px;
 }
 .btn-primary:hover {
-  background-color: var(--green-secondary);
-
-  transition: background-color 0.8s ease;
+  background-color: var(--green-dark);
   color:var(--grey);
-  font-family: "Gilroy ExtraBold";
-  border: none;
   box-shadow:0px 3px 6px -4px #000000;
 }
 .btn-primary:focus{
-  background-color: var(--green-secondary);
-  border: 1px #32695d;
+  background-color: var(--green-dark);
+  border: 1.5px 2d6e63;
   box-shadow:0px 3px 6px -4px #000000;
   color:var(--grey);
 }
@@ -67,7 +64,7 @@ select {
 .secondaryAction {
   color:var(--green);
   text-decoration:underline;
-  font-family:"Gilroy Light";
+  font-family: var(--primary-font);
 }
 .primaryAction {
   font-family: 'Gilroy-Light';
@@ -79,11 +76,11 @@ select {
 }
 .short-par {
   color:var(--dark-blue);
-  font-family:"Gilroy Light";
+  font-family: var(--primary-font);
 }
 .par-link {
   color:var(--green);
-  font-family:"Gilroy Light";
+  font-family: var(--primary-font);
   text-decoration:underline;
 }
 .overlay{
