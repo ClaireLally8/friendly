@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.conf import settings
 
+from django.contrib.auth.models import User
 from profiles.models import UserProfile
 
 from datetime import datetime, date
@@ -12,7 +13,7 @@ class Activity(models.Model):
         verbose_name_plural = 'Activities'
 
     activity_id = models.AutoField(primary_key=True)
-    host = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    host = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activity")
     name = models.CharField(max_length=254, null=False, blank=False)
     date = models.DateField()
     start_time =models.TimeField()
