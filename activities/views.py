@@ -23,10 +23,11 @@ def activities(request):
 
 def create_activity(request):
     if request.method == "POST":
-        userprofile = get_userprofile(request)
-        form = ActivityForm(request.POST, instance=userprofile)
+        form = ActivityForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            form.instance.host = request.user
+            activity = form.save(commit=False)
+            activity.save()
             return redirect('activities')
     else:
         form = ActivityForm()
