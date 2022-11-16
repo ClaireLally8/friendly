@@ -3,5 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.activities, name='activities'),
-    path('new_activity/', views.create_activity, name='create_activity'),
+    path('new/', views.create_activity, name='create-activity'),
+    path('edit/<int:id>', views.edit_activity, name='edit-activity'),
+    path('delete/<int:id>', views.delete_activity, name='delete-activity'),
 ]

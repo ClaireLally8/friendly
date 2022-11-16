@@ -7,9 +7,16 @@
         </div>
         <div class="col-5">
             <h5 class="card-title">{{ activity.name }}</h5>
+            <h5 class="card-title">{{ activity.host }}</h5>
+            <h5 class="card-title">{{ activity.id }}</h5>
         </div>
         <div class="col-5">
             <a href="#" class="btn btn-primary">View Listing</a>
+            {% if activity.host == user %}
+            <a href="{% url 'edit-activity' activity.id %}" class="btn btn-primary">Edit</a>
+            <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Delete
+              </button>
+            {% endif %}
         </div>
     </div>
     <div class="row">
@@ -23,5 +30,21 @@
             <h5 class="card-title">{{activity.start_time }} to {{ activity.end_time }}</h5>
         </div>
     </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Activity</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this activity?  It cannot be undone</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+          <a href="{% url 'delete-activity' activity.id %}">Delete</a>
+        </div>
+      </div>
     </div>
   </div>
