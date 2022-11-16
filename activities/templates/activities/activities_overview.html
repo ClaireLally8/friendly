@@ -2,28 +2,14 @@
 {% load static %}
 
 {% block content %}
-<h2>Listings for Today</h2>
-<div class="overlay-dark py-5">
-    <div class="ms-3">
-        {% for activity in page_obj %}
-        {% if activity.date == today %}
-        {% include 'includes/activity_card.html' with activity=activity %}
-        {% endif %}
-        {% endfor %}
-        {% if page_obj.has_previous %}
-        <a class="change-page-link" href="?page={{ page_obj.previous_page_number }}">previous page</a>
-        {% endif %}
-        {% if page_obj.has_next %}
-        <a class="change-page-link" href="?page={{ page_obj.next_page_number }}">next page</a>
-        {% endif %}
-    </div>
+<h1 class="m-5">Available Today</h1>
+{% for activity in page_obj %}
+<div class="container">
+    {% include 'includes/activity_card.html' with activity=activity user=user %}
 </div>
-<h2>Future Listings</h2>
-<div class="overlay-dark py-5">
-    <div class="ms-3">
-        {% include 'includes/activity_card.html' with form=form %}
-    </div>
-</div>
-<a href="{% url 'create_activity' %}">New Listing</a>
+       
+{% endfor %}
+
+<a href="{% url 'create-activity' %}">New Listing</a>
 
 {% endblock %}
