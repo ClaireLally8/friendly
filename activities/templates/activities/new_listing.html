@@ -8,7 +8,7 @@
         <h1>Post a new listing</h1>
         <a href="{% url 'activities' %}"><i class="fas fa-arrow-left mx-2"></i>Back to overview</a>
     </div>
-            <form method="POST" action="{% url 'create_activity' %}">
+            <form method="POST" action="{% url 'create-activity' %}">
                 {% csrf_token %}
                 <div class="container">
                     <div class="row">
