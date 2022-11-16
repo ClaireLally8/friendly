@@ -5,6 +5,7 @@
 	--green:#48ac98;
   --green-dark: #388a7c;
 	--grey:#F2F2F2;
+  --error-red: #cc0000;
   --primary-font: "Source Sans Pro";
   --heading-font: "Bebas Neue";
 }
@@ -37,6 +38,11 @@ select {
   font-size:16px;
   font-family: var(--primary-font);
   padding:3px;
+}
+.alert, .alert-error {
+  color: var(--error-red);
+  font-family:var(--primary-font);
+  font-weight:300;
 }
 .btn-primary {
   background-color: var(--green);
