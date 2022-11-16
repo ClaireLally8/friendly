@@ -8,12 +8,15 @@ from .helpers import get_userprofile
 def activities(request):
     form = ActivityForm()
     activities = Activity.objects.all()
+    today= date.today()
+    featured = Activity.objects.filter(date=today).values()
     user = request.user
 
     context = {
         'page_obj': activities,
         'form': form,
         'user': user,
+        'featured':featured
     }
     return render(request, 'activities/activities_overview.html', context)
 
