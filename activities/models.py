@@ -12,7 +12,7 @@ class Activity(models.Model):
     class Meta:
         verbose_name_plural = 'Activities'
 
-    activity_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     host = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activity")
     name = models.CharField(max_length=254, null=False, blank=False)
     date = models.DateField()
