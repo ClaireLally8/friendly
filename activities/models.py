@@ -23,7 +23,7 @@ class Activity(models.Model):
     available = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.activity_id)
+        return str(self.id)
 
 class Request(models.Model):
     activity = models.ForeignKey(Activity, null=False, blank=False, on_delete=models.CASCADE)
@@ -31,7 +31,7 @@ class Request(models.Model):
     accepted = models.BooleanField(default=False)
     
     def __str__(self):
-        return str(self.activity.activity_id)
+        return str(self.activity.id)
 
 
 
