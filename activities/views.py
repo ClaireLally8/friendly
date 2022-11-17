@@ -11,12 +11,12 @@ def activities(request):
     form = ActivityForm()
     user = request.user
 
-    activities = Activity.objects.all()
-    activities = activities.order_by('date','start_time')
+    available_activities = Activity.objects.filter(available = True).values()
+    activities = available_activities.order_by('date','start_time')
     activities = Paginator(activities,3)
     future = activities.get_page(page_number)
 
-    temp = Activity.objects.filter(date=today).values()
+    temp = available_activities.filter(date=today).values()
     temp = temp.order_by('start_time')
     temp = Paginator(temp, 2)
     featured = temp.get_page(page_number)
