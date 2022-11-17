@@ -3,17 +3,20 @@ from .forms import ActivityForm
 from .models import Activity, Request
 
 from datetime import date
-from .helpers import get_userprofile
+from django.core.paginator import Paginator
 
 def activities(request):
     form = ActivityForm()
     activities = Activity.objects.all()
     today= date.today()
-    featured = Activity.objects.filter(date=today).values()
+    temp = Activity.objects.filter(date=today).values()
+    temp = temp.order_by('start_time')
+    temp = Paginator(temp, 2)
+    page_number = request.GET.get('page')
+    featured = temp.get_page(page_number)
     user = request.user
 
     context = {
-        'page_obj': activities,
         'form': form,
         'user': user,
         'featured':featured
