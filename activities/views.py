@@ -6,17 +6,24 @@ from datetime import date
 from django.core.paginator import Paginator
 
 def activities(request):
-    form = ActivityForm()
-    activities = Activity.objects.all()
+    page_number = request.GET.get('page')
     today= date.today()
+    form = ActivityForm()
+    user = request.user
+
+    activities = Activity.objects.all()
+    activities = activities.order_by('date','start_time')
+    activities = Paginator(activities,3)
+    future = activities.get_page(page_number)
+
     temp = Activity.objects.filter(date=today).values()
     temp = temp.order_by('start_time')
     temp = Paginator(temp, 2)
-    page_number = request.GET.get('page')
     featured = temp.get_page(page_number)
-    user = request.user
 
     context = {
+        'date':today,
+        'future':future,
         'form': form,
         'user': user,
         'featured':featured
