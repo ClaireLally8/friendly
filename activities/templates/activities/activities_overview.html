@@ -20,6 +20,18 @@
     {% for activity in future %}
         {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
     {% endfor %}
+    <div class="pagination pages-items">
+        <span class="step-links">
+        {% if future.has_next and future.has_previous %}
+            <a href="?page={{ future.next_page_number }}">next</a>
+            <a href="?page={{ future.previous_page_number }}">previous</a>
+        {% elif future.has_next and not future.has_previous%}
+            <a href="?page={{ future.next_page_number }}">next</a>
+        {% elif not future.has_next and future.has_previous%}
+        <a href="?page={{ future.previous_page_number }}">previous</a>
+        {% endif %}
+        </span>
+      </div>
 </div>
 
 <a href="{% url 'create-activity' %}">New Listing</a>
