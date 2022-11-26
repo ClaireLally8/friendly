@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap');
 :root {
 	--dark-blue:#2B697A;
+  --dark-blue-disabled:#558794;
 	--blue: #e9eef2;
 	--green:#48ac98;
   --green-dark: #388a7c;
@@ -137,4 +138,19 @@ select {
 }
 .overlay-dark{
   background-color:var(--dark-blue);
+}
+.enabled {
+  color:var(--grey);
+  font-family:var(--primary-font);
+  font-size:15px;
+
+}
+.enabled:hover {
+  color:var(--grey);
+  text-decoration:underline;
+}
+.disabled {
+  color:var(--dark-blue-disabled);
+  font-family:var(--primary-font);
+  font-size:15px;
 }
