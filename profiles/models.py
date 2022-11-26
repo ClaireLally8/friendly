@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.db import models
 
 ACCOUNT_TYPE = (
-    ('eld', 'Elderly Member'),
-    ('vol', 'Volunteer'),
+    ('Elderly Member', 'eld'),
+    ('Volunteer', 'vol'),
 )
 
 class UserProfile(models.Model):
