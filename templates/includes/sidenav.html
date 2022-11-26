@@ -4,11 +4,11 @@
     <div id="sidemenunav" class="shadow-1">
       <div class="navbarbrand">
        <a class="navbar-brand justify-content-center mb-2" href="#"><img src="{% static 'images/logo.png' %}" height="65" class="pr-4" alt="Site logo"></a>
-       <p><a class="navbaritems" href="">My Profile</a></p>
+       <p><a class="navbaritems" href="{% url 'profile' %}">Profile</a></p>
       </div>
       <div>
         <p><a class="navbaritems" href=""></a></p>
-        <p><a class="navbaritems" href="">Notes</a></p>
+        <p><a class="navbaritems" href="{% url 'activities' %}">Activities</a></p>
       </div>
       <div class="menubarfooter">
         <p><a class="navbaritems" href="">Logout</a></p>
