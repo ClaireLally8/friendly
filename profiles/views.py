@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 
-from allauth import Users
+from django.contrib.auth.models import User
+
 from .models import UserProfile, UserType
 
+
 def profile(request):
-    user = request.user
-    account = Users.objects.filter(username=user).values()
+    user_tmp = request.user
+    user = get_object_or_404(User, username=user_tmp)
     profile = UserProfile.objects.filter(user=user).values()
     user_type = UserType.objects.filter(user=user).values()
 
