@@ -8,8 +8,8 @@ from .models import UserProfile, UserType
 def profile(request):
     user_tmp = request.user
     user = get_object_or_404(User, username=user_tmp)
-    profile = UserProfile.objects.filter(user=user).values()
-    user_type = UserType.objects.filter(user=user).values()
+    profile = get_object_or_404(UserProfile, user=user)
+    user_type = get_object_or_404(UserType, user=user)
 
     context = {
         'user':user,
