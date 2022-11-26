@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from .forms import ActivityForm
 from .models import Activity, Request
 
-from datetime import date
+from datetime import date, timedelta
 from django.core.paginator import Paginator
 
 def activities(request):
@@ -12,7 +12,7 @@ def activities(request):
     user = request.user
 
     available_activities = Activity.objects.filter(available = True).values()
-    activities = available_activities.order_by('date','start_time')
+    activities= available_activities.filter(date__gte=today).order_by('date','start_time')
     activities = Paginator(activities,3)
     future = activities.get_page(page_number)
 
