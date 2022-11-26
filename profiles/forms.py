@@ -69,5 +69,12 @@ class UserSignUpForm(SignupForm):
         userType.user = user
         userType.account_type = self.cleaned_data['account_type']
         userType.save()
-        
-        
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        """
+        Render all form fields except 'user'
+        as this should remain the same
+        """
+        model = UserProfile
+        exclude = ('user', 'phone_number')
