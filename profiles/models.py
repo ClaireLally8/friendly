@@ -12,6 +12,7 @@ ACCOUNT_TYPE = (
 class UserProfile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    image = models.ImageField(null=True, blank=True)
     phone_number = models.CharField(max_length=30, null=False)
     postcode = models.CharField(max_length=500, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=True, blank=True)
