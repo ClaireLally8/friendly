@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-sm-12 col-md-2 d-flex align-items-center">
                 <h2 class="my-3">
-                {% if activity.date == date %}
-                    {{ activity.start_time }}
+                {% if activity.start_datetime.date == date %}
+                    {{ activity.start_datetime.time}}
                 {% else %}
-                    {{ activity.date }}
+                    {{ activity.start_datetime.date }}
                 {% endif %}
                 </h2>
                     
