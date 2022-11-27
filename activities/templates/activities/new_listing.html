@@ -18,16 +18,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-md-4 col-lg-4 offset-md-2 mt-3 mb-2">
-                            {{ form.date | as_crispy_field }}
+                            {{ form.start_datetime | as_crispy_field }}
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-4 mt-3 mb-2">
                             {{ form.location | as_crispy_field }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-md-4 col-lg-4 offset-md-2 mt-3 mb-2">
-                            {{ form.start_time | as_crispy_field }}
-                        </div>
                         <div class="col-sm-6 col-md-4 col-lg-4 mt-3 mb-2">
                             {{ form.end_time | as_crispy_field }}
                         </div>
