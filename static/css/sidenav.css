@@ -36,7 +36,6 @@ ul {
 #hamburgerBtn {
   display: none;
   position: absolute;
-  top: 1.875rem;
   right: 1.875rem;
 
 }
@@ -50,7 +49,6 @@ ul {
     margin-left: 0!important;
     width:100%;
   }
-
   #sidemenunav {
     width: 100vw;
     transform: translateX(-1000px);

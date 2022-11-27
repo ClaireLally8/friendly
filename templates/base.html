@@ -41,8 +41,7 @@
   </head>
 
   <body>
-    <header class="container-fluid"></header>
-
+    <header class="container-fluid">
     {% block page_header %}
     {% endblock %}
     {% if request.user.is_authenticated %}
@@ -50,6 +49,7 @@
     {% else %}
     {% include 'includes/navbar_anon.html' %}
     {% endif %}
+  </header>
     <main>
     {% include 'includes/messages.html'%}
 
