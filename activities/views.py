@@ -13,6 +13,7 @@ def activities(request):
     now = datetime.now()
     form = ActivityForm()
     user = request.user
+    account = get_usertype(request, user)
 
     available_activities = Activity.objects.filter(available = True, start_datetime__gte=now).values()
     activities= available_activities.order_by('start_datetime')
@@ -29,7 +30,8 @@ def activities(request):
         'future':future,
         'form': form,
         'user': user,
-        'featured':featured
+        'featured':featured,
+        'account': account
     }
     return render(request, 'activities/activities_overview.html', context)
 
