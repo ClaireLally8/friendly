@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from .forms import ActivityForm
 from .models import Activity, Request
 
-from profiles.models import UserProfile
+from .helpers import get_userprofile, get_usertype
 
 from datetime import date, datetime
 from django.core.paginator import Paginator
@@ -49,30 +49,36 @@ def create_activity(request):
 
 def edit_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
-    if request.method == "POST":
-        form = ActivityForm(request.POST, request.FILES, instance=activity)
-        if form.is_valid():
-            form.save()
-            return redirect('activities')
-    else:
-        form = ActivityForm(instance=activity)
-        context = {
-        'form': form,
-        'activity': activity,
-    }
-    return render(request, 'activities/edit_activity.html', context)
+    if request.user == activity.host:
+        if request.method == "POST":
+            form = ActivityForm(request.POST, request.FILES, instance=activity)
+            if form.is_valid():
+                form.save()
+                return redirect('activities')
+        else:
+            form = ActivityForm(instance=activity)
+            context = {
+            'form': form,
+            'activity': activity,
+        }
+        return render(request, 'activities/edit_activity.html', context)
+    return render(request, 'errors/permission_denied.html')
 
 def delete_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
-    activity.delete()
-    return redirect('activities')
+    if request.user == activity.host:
+        activity.delete()
+        return redirect('activities')
+    return render(request, 'errors/permission_denied.html')
 
 def view_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
     logged_in_user = request.user
-    profile = get_object_or_404(UserProfile, user=activity.host)
+    profile = get_userprofile(request, logged_in_user)
+    account_type = get_usertype(request, logged_in_user)
     context = {
         'logged_in_user': logged_in_user,
+        'account_type': account_type,
         'activity': activity,
         'profile':profile,
     }
