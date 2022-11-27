@@ -91,3 +91,14 @@ def view_activity(request, id):
 
     return render(request, 'activities/activity_detail.html', context)
 
+def my_activities(request):
+    account = get_usertype(request, request.user)
+    if account.account_type == 'vol':
+        activities = Activity.objects.filter(host = request.user).values()
+        activities = activities.order_by('start_datetime')
+        context = {
+            'activities':activities,
+        }
+        return render(request, 'activities/my_activities.html', context)
+    return render(request, 'errors/permission_denied.html')
+    
