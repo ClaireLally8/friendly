@@ -2,22 +2,23 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from .forms import ActivityForm
 from .models import Activity, Request
 
-from datetime import date, timedelta
+from datetime import date, datetime
 from django.core.paginator import Paginator
 
 def activities(request):
     page_number = request.GET.get('page')
     today= date.today()
+    now = datetime.now()
     form = ActivityForm()
     user = request.user
 
     available_activities = Activity.objects.filter(available = True).values()
-    activities= available_activities.filter(date__gte=today).order_by('date','start_time')
+    activities= available_activities.filter(start_datetime__gte=now).order_by('start_datetime')
     activities = Paginator(activities,3)
     future = activities.get_page(page_number)
 
-    temp = available_activities.filter(date=today).values()
-    temp = temp.order_by('start_time')
+    temp = available_activities.filter(start_datetime__gte=now).values()
+    temp = temp.order_by('start_datetime')
     temp = Paginator(temp, 2)
     featured = temp.get_page(page_number)
 
