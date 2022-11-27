@@ -4,6 +4,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
+from .helpers import COUNTY_CHOICES
+
 ACCOUNT_TYPE = (
     ('Elderly Member', 'eld'),
     ('Volunteer', 'vol'),
@@ -18,7 +20,7 @@ class UserProfile(models.Model):
     town_or_city = models.CharField(max_length=40, null=True, blank=True)
     street_address1 = models.CharField(max_length=80, null=True, blank=True)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
-    county = models.CharField(max_length=80, null=True)
+    county = models.CharField(choices=COUNTY_CHOICES, null=True, blank=True,max_length=200)
 
     def __str__(self):
         return self.user.username

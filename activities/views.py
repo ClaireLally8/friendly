@@ -2,6 +2,8 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from .forms import ActivityForm
 from .models import Activity, Request
 
+from profiles.models import UserProfile
+
 from datetime import date, datetime
 from django.core.paginator import Paginator
 
@@ -64,3 +66,16 @@ def delete_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
     activity.delete()
     return redirect('activities')
+
+def view_activity(request, id):
+    activity = get_object_or_404(Activity, id=id)
+    # host = activity.host
+    # profile = get_object_or_404(UserProfile, user=host)
+    
+    context = {
+        'activity': activity,
+        # 'profile':profile,
+    }
+
+    return render(request, 'activities/activity_detail.html', context)
+
