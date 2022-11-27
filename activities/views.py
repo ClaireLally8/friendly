@@ -34,18 +34,22 @@ def activities(request):
     return render(request, 'activities/activities_overview.html', context)
 
 def create_activity(request):
-    if request.method == "POST":
-        form = ActivityForm(data=request.POST)
-        if form.is_valid():
-            form.instance.host = request.user
-            form.save()
-            return redirect('activities')
-    else:
-        form = ActivityForm()
-        context = {
-        'form': form,
-    }
-        return render(request, 'activities/new_listing.html', context)
+    account = get_usertype(request, request.user)
+    if account.account_type == 'vol':
+        if request.method == "POST":
+            form = ActivityForm(data=request.POST)
+            if form.is_valid():
+                form.instance.host = request.user
+                form.save()
+                return redirect('activities')
+        else:
+            form = ActivityForm()
+            context = {
+            'form': form,
+        }
+            return render(request, 'activities/new_listing.html', context)
+    return render(request, 'errors/permission_denied.html')
+
 
 def edit_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
