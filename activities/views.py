@@ -69,12 +69,12 @@ def delete_activity(request, id):
 
 def view_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
-    # host = activity.host
-    # profile = get_object_or_404(UserProfile, user=host)
-    
+    logged_in_user = request.user
+    profile = get_object_or_404(UserProfile, user=activity.host)
     context = {
+        'logged_in_user': logged_in_user,
         'activity': activity,
-        # 'profile':profile,
+        'profile':profile,
     }
 
     return render(request, 'activities/activity_detail.html', context)
