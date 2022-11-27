@@ -13,6 +13,7 @@
       </div>
       <div class="menubarfooter">
         <p><a class="navbaritems" href="{% url 'account_logout' %}">Logout</a></p>
+        <p><small>You're logged in as {{ request.user.username }}</small></p>
       </div>
     </div>
   </div>
