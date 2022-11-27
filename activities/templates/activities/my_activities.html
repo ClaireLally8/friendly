@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5 mx-5 mb-2">Your Activities</h1>
+    <a class="mx-5 mb-2" href="{% url 'create-activity' %}"><i class="fas fa-plus mx-2"></i>Post a new activity</a>
+<div class="container-fluid px-5 my-5">
+    {% for activity in activities %}
+    {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
+{% endfor %}
+</div>
+</div>
+{% endblock %}
