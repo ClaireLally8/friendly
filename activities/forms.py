@@ -8,12 +8,13 @@ class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
         fields = ('name', 'start_datetime', 'end_time', 
-                  'location', 'description')
+                  'location', 'town', 'description')
         labels = {
             'name': 'Activity Type',
             'start_datetime': 'Date & Time of Activity',
             'end_time': 'End Time',
-            'location': 'Location',
+            'location': 'County',
+            'town': 'Town (optional)',
             'description': 'Description',
         }
         widgets = {

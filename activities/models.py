@@ -7,7 +7,8 @@ from profiles.models import UserProfile
 
 from datetime import datetime, date
 
-# Create your models here.
+from profiles.helpers import COUNTY_CHOICES
+
 class Activity(models.Model):
     class Meta:
         verbose_name_plural = 'Activities'
@@ -17,7 +18,8 @@ class Activity(models.Model):
     name = models.CharField(max_length=254, null=False, blank=False)
     start_datetime = models.DateTimeField()
     end_time = models.TimeField()
-    location = models.CharField(max_length=40, null=False, blank=False)
+    location = models.CharField(choices=COUNTY_CHOICES, null=True, blank=True,max_length=200)
+    town = models.CharField(max_length=200, null=True, blank = True)
     description = models.CharField(max_length=140, null=False, blank=False)
     available = models.BooleanField(default=True)
 
