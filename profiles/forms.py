@@ -7,14 +7,18 @@ ACCOUNT_TYPE = (
     ('vol', 'Volunteer'),
 )
 
+
 class UserLoginForm(LoginForm):
 
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
         del self.fields['login'].widget.attrs['placeholder']
         del self.fields['password'].widget.attrs['placeholder']
-        self.fields['login'].widget = forms.TextInput(attrs={'class': 'input-wide'})
-        self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'input-wide'})
+        self.fields['login'].widget = forms.TextInput(
+            attrs={'class': 'input-wide'})
+        self.fields['password'].widget = forms.PasswordInput(
+            attrs={'class': 'input-wide'})
+
 
 class UserSignUpForm(SignupForm):
     first_name = forms.CharField(max_length=155)
@@ -24,7 +28,7 @@ class UserSignUpForm(SignupForm):
 
     def __init__(self, *args, **kwargs):
         super(UserSignUpForm, self).__init__(*args, **kwargs)
-        
+
         del self.fields['email'].widget.attrs['placeholder']
         del self.fields['username'].widget.attrs['placeholder']
         del self.fields['password1'].widget.attrs['placeholder']
@@ -69,6 +73,7 @@ class UserSignUpForm(SignupForm):
         userType.user = user
         userType.account_type = self.cleaned_data['account_type']
         userType.save()
+
 
 class UserProfileForm(forms.ModelForm):
     class Meta:

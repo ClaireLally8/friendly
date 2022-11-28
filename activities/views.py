@@ -7,17 +7,19 @@ from .helpers import get_userprofile, get_usertype
 from datetime import date, datetime
 from django.core.paginator import Paginator
 
+
 def activities(request):
     page_number = request.GET.get('page')
-    today= date.today()
+    today = date.today()
     now = datetime.now()
     form = ActivityForm()
     user = request.user
     account = get_usertype(request, user)
 
-    available_activities = Activity.objects.filter(available = True, start_datetime__gte=now).values()
-    activities= available_activities.order_by('start_datetime')
-    activities = Paginator(activities,3)
+    available_activities = Activity.objects.filter(
+        available=True, start_datetime__gte=now).values()
+    activities = available_activities.order_by('start_datetime')
+    activities = Paginator(activities, 3)
     future = activities.get_page(page_number)
 
     temp = available_activities.filter(start_datetime__date=today).values()
@@ -26,14 +28,15 @@ def activities(request):
     featured = temp.get_page(page_number)
 
     context = {
-        'date':today,
-        'future':future,
+        'date': today,
+        'future': future,
         'form': form,
         'user': user,
-        'featured':featured,
+        'featured': featured,
         'account': account
     }
     return render(request, 'activities/activities_overview.html', context)
+
 
 def create_activity(request):
     account = get_usertype(request, request.user)
@@ -47,8 +50,8 @@ def create_activity(request):
         else:
             form = ActivityForm()
             context = {
-            'form': form,
-        }
+                'form': form,
+            }
             return render(request, 'activities/new_listing.html', context)
     return render(request, 'errors/permission_denied.html')
 
@@ -64,11 +67,12 @@ def edit_activity(request, id):
         else:
             form = ActivityForm(instance=activity)
             context = {
-            'form': form,
-            'activity': activity,
-        }
+                'form': form,
+                'activity': activity,
+            }
         return render(request, 'activities/edit_activity.html', context)
     return render(request, 'errors/permission_denied.html')
+
 
 def delete_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
@@ -76,6 +80,7 @@ def delete_activity(request, id):
         activity.delete()
         return redirect('activities')
     return render(request, 'errors/permission_denied.html')
+
 
 def view_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
@@ -86,19 +91,18 @@ def view_activity(request, id):
         'logged_in_user': logged_in_user,
         'account_type': account_type,
         'activity': activity,
-        'profile':profile,
+        'profile': profile,
     }
-
     return render(request, 'activities/activity_detail.html', context)
+
 
 def my_activities(request):
     account = get_usertype(request, request.user)
     if account.account_type == 'vol':
-        activities = Activity.objects.filter(host = request.user).values()
+        activities = Activity.objects.filter(host=request.user).values()
         activities = activities.order_by('start_datetime')
         context = {
-            'activities':activities,
+            'activities': activities,
         }
         return render(request, 'activities/my_activities.html', context)
     return render(request, 'errors/permission_denied.html')
-    

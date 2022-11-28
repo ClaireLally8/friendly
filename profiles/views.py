@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 
 from django.contrib.auth.models import User
 
@@ -20,9 +20,9 @@ def profile(request):
         form = UserProfileForm(instance=profile)
 
     context = {
-        'user':user,
-        'profile':profile,
+        'user': user,
+        'profile': profile,
         'user_type': user_type,
-        'form' : form
+        'form': form
     }
     return render(request, 'profiles/profile_overview.html', context)

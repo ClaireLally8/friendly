@@ -4,10 +4,11 @@ from .models import Activity
 
 from .widgets import DateTimePickerInput, TimePickerInput
 
+
 class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
-        fields = ('name', 'start_datetime', 'end_time', 
+        fields = ('name', 'start_datetime', 'end_time',
                   'location', 'town', 'description')
         labels = {
             'name': 'Activity Type',
@@ -18,7 +19,7 @@ class ActivityForm(forms.ModelForm):
             'description': 'Description',
         }
         widgets = {
-            'start_datetime' : DateTimePickerInput(),
-            'end_time' : TimePickerInput(),
+            'start_datetime': DateTimePickerInput(),
+            'end_time': TimePickerInput(),
 
         }
