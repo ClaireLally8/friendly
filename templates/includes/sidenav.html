@@ -9,7 +9,11 @@
       <div>
         <p><a class="navbaritems" href=""></a></p>
         <p><a class="navbaritems" href="{% url 'activities' %}">Activities</a></p>
+        {% if request.user.account_type.account_type == 'vol'%}
         <p><a class="navbaritems" href="{% url 'my-activities' %}">My Activities</a></p>
+        {% elif request.user.account_type.account_type == 'eld'%}
+        <p><a class="navbaritems" href="{% url 'my-requests' %}">My Requests</a></p>
+        {% endif %}
       </div>
       <div class="menubarfooter">
         <p><a class="navbaritems" href="{% url 'account_logout' %}">Logout</a></p>
