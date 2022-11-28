@@ -1,6 +1,6 @@
 from datetime import date
 from django import forms
-from .models import Activity
+from .models import Activity, Request
 
 from .widgets import DateTimePickerInput, TimePickerInput
 
@@ -22,4 +22,12 @@ class ActivityForm(forms.ModelForm):
             'start_datetime': DateTimePickerInput(),
             'end_time': TimePickerInput(),
 
+        }
+
+class RequestForm(forms.ModelForm):
+    class Meta:
+        model = Request
+        fields = ('message',)
+        labels = {
+            'message': 'Message to the Poster'
         }

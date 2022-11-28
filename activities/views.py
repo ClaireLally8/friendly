@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
-from .forms import ActivityForm
+from .forms import ActivityForm, RequestForm
 from .models import Activity, Request
 
 from .helpers import get_userprofile, get_usertype
@@ -87,11 +87,13 @@ def view_activity(request, id):
     logged_in_user = request.user
     profile = get_userprofile(request, logged_in_user)
     account_type = get_usertype(request, logged_in_user)
+    form = RequestForm(instance=activity)
     context = {
         'logged_in_user': logged_in_user,
         'account_type': account_type,
         'activity': activity,
         'profile': profile,
+        'form': form,
     }
     return render(request, 'activities/activity_detail.html', context)
 
@@ -106,3 +108,20 @@ def my_activities(request):
         }
         return render(request, 'activities/my_activities.html', context)
     return render(request, 'errors/permission_denied.html')
+
+def request_activity(request, id):
+    account = get_usertype(request, request.user)
+    if account.account_type == 'eld':
+        if request.method == "POST":
+            form = RequestForm(data=request.POST)
+            activity = get_object_or_404(Activity, id=id)
+            if form.is_valid():
+                form.instance.user = request.user
+                form.instance.activity = activity
+                form.save()
+            return redirect(reverse(view_activity, args=[
+                        activity.id]))
+        else:
+            return render(request, 'errors/permission_denied.html')
+
+

@@ -41,7 +41,8 @@ class Request(models.Model):
         null=False,
         blank=False,
         on_delete=models.CASCADE)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="request")
+    message = models.TextField(max_length=1000, null=True, blank=True)
     accepted = models.BooleanField(default=False)
 
     def __str__(self):
