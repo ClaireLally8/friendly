@@ -1,11 +1,6 @@
 from django import forms
 from allauth.account.forms import SignupForm, LoginForm
-from .models import UserProfile, UserType
-
-ACCOUNT_TYPE = (
-    ('eld', 'Elderly Member'),
-    ('vol', 'Volunteer'),
-)
+from .models import UserProfile, UserType, ACCOUNT_TYPE
 
 
 class UserLoginForm(LoginForm):
@@ -66,13 +61,13 @@ class UserSignUpForm(SignupForm):
         user.save()
 
         profile = UserProfile()
-        userType = UserType()
+        user_type = UserType()
         profile.user = user
+        user_type.user = user
         profile.phone_number = self.cleaned_data['phone_number']
+        user_type.account_type = self.cleaned_data['account_type']
         profile.save()
-        userType.user = user
-        userType.account_type = self.cleaned_data['account_type']
-        userType.save()
+        user_type.save()
 
 
 class UserProfileForm(forms.ModelForm):
