@@ -40,7 +40,7 @@ def activities(request):
 
 def create_activity(request):
     account = get_usertype(request, request.user)
-    if account.account_type == 'vol':
+    if account.account_type == 'Volunteer':
         if request.method == "POST":
             form = ActivityForm(data=request.POST)
             if form.is_valid():
@@ -100,7 +100,7 @@ def view_activity(request, id):
 
 def my_activities(request):
     account = get_usertype(request, request.user)
-    if account.account_type == 'vol':
+    if account.account_type == 'Volunteer':
         activities = Activity.objects.filter(host=request.user).values()
         activities = activities.order_by('start_datetime')
         context = {
@@ -111,7 +111,7 @@ def my_activities(request):
 
 def request_activity(request, id):
     account = get_usertype(request, request.user)
-    if account.account_type == 'eld':
+    if account.account_type == 'Elderly Member':
         if request.method == "POST":
             form = RequestForm(data=request.POST)
             activity = get_object_or_404(Activity, id=id)
@@ -123,5 +123,15 @@ def request_activity(request, id):
                         activity.id]))
         else:
             return render(request, 'errors/permission_denied.html')
+
+def request_history(request):
+    account = get_usertype(request, request.user)
+    if account.account_type == 'Elderly Member':
+        requests = Request.objects.filter(user=request.user)
+        context = {
+            'requests': requests,
+        }
+        return render(request, 'activities/request_history.html', context)
+
 
 
