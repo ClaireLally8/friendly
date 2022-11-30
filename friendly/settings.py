@@ -32,13 +32,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'profiles',
-    'activities',
-
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'profiles',
+    'activities',
 
     'crispy_forms',
     'storages',
