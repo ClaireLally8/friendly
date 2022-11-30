@@ -3,5 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h1>There</h1>
+{% for request in requests %}
+{{ request }}
+{% endfor %}
 {% endblock %}

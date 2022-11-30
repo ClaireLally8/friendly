@@ -51,6 +51,7 @@ def create_activity(request):
             form = ActivityForm()
             context = {
                 'form': form,
+                'account':account,
             }
             return render(request, 'activities/new_listing.html', context)
     return render(request, 'errors/permission_denied.html')
@@ -58,6 +59,7 @@ def create_activity(request):
 
 def edit_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
+    account = get_usertype(request, request.user)
     if request.user == activity.host:
         if request.method == "POST":
             form = ActivityForm(request.POST, request.FILES, instance=activity)
@@ -69,12 +71,14 @@ def edit_activity(request, id):
             context = {
                 'form': form,
                 'activity': activity,
+                'account': account,
             }
         return render(request, 'activities/edit_activity.html', context)
     return render(request, 'errors/permission_denied.html')
 
 
 def delete_activity(request, id):
+    account = get_usertype(request, request.user)
     activity = get_object_or_404(Activity, id=id)
     if request.user == activity.host:
         activity.delete()
@@ -90,7 +94,7 @@ def view_activity(request, id):
     form = RequestForm(instance=activity)
     context = {
         'logged_in_user': logged_in_user,
-        'account_type': account_type,
+        'account': account_type,
         'activity': activity,
         'profile': profile,
         'form': form,
@@ -105,6 +109,7 @@ def my_activities(request):
         activities = activities.order_by('start_datetime')
         context = {
             'activities': activities,
+            'account' : account,
         }
         return render(request, 'activities/my_activities.html', context)
     return render(request, 'errors/permission_denied.html')
@@ -127,9 +132,11 @@ def request_activity(request, id):
 def request_history(request):
     account = get_usertype(request, request.user)
     if account.account_type == 'Elderly Member':
-        requests = Request.objects.filter(user=request.user)
+        requests = Request.objects.filter(user=request.user).values()
+
         context = {
             'requests': requests,
+            'account' : account,
         }
         return render(request, 'activities/request_history.html', context)
 
