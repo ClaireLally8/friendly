@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'storages',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +79,6 @@ TEMPLATES = [
         },
     },
 ]
-SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
