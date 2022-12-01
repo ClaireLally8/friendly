@@ -1,0 +1,32 @@
+{% load static %}
+<div class="card p-2 my-2 mx-4">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-2 d-flex align-items-center">
+            <h2 class="my-3">{{ user.username }}</h2>
+                
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+                <p>{{ request.message }}</p>
+        </div>
+        <div class="col-xs-12 col-md-2 d-flex justify-content-end align-items-end">
+            <a class="a-small mx-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                Cancel Request
+            </a>
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure? This cannot be undone</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+          <a href="{% url 'cancel-request' activity.id %}" class="btn btn-primary">Confirm Cancellation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,6 @@ from activities.helpers import get_userprofile, get_usertype
 from activities.views import view_activity
 
 
-
 def request_activity(request, id):
     account = get_usertype(request, request.user)
     if account.account_type == 'Elderly Member':
@@ -41,6 +40,16 @@ def request_history(request):
             'pending':pending,
         }
         return render(request, 'activity_requests/request_history.html', context)
+
+def cancel_request(request, id):
+    account = get_usertype(request, request.user)
+    activity = get_object_or_404(Activity, id=id)
+    request = get_object_or_404(Request, activity_id=id, user=request.user)
+    if request:
+        request.delete()
+        return redirect(reverse(view_activity, args=[
+                            activity.id]))
+    return render(request, 'errors/permission_denied.html')
    
 
 
