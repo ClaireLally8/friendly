@@ -43,13 +43,24 @@
         {% if login_request %}
         <h2>Your Request Details</h2>
         <div class="overlay-dark p-4 mb-5">
-          {% for request in login_request %}
-          {% include 'includes/request_desc_short.html' with request=request user=user activity=activity %}
+          {% for req in login_request %}
+          {% include 'includes/request_desc_short.html' with req=req user=user activity=activity %}
           {% endfor %}
         </div>
         {% else %}
           {% include 'includes/request_modal.html' with activity=activity user=user form=form %}
         {% endif %}
-      {% endif %}
+      
+        {% elif account.account_type == 'Volunteer' %}
+          {% if logged_in_user == activity.host %}
+            {% if requests %}
+              {% for req in requests %}
+                {% include 'includes/request_desc_short.html' with req=req user=user activity=activity %}
+              {% endfor%}
+            {% else %}
+              <h2>There are no current requests on this activity</h2>
+            {% endif %}
+          {% endif %}
+        {% endif %}
     </div>
 {% endblock %}

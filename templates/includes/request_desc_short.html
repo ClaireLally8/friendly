@@ -6,12 +6,14 @@
                 
         </div>
         <div class="col-xs-12 col-sm-6 col-md-8">
-                <p>{{ request.message }}</p>
+                <p>{{ req.message }}</p>
         </div>
         <div class="col-xs-12 col-md-2 d-flex justify-content-end align-items-end">
+          {% if req.user_id == user.id %}
             <a class="a-small mx-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
                 Cancel Request
             </a>
+            {% endif %}
             <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
