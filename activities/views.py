@@ -96,6 +96,7 @@ def view_activity(request, id):
     profile = get_userprofile(request, logged_in_user)
     account_type = get_usertype(request, logged_in_user)
     requests = Request.objects.filter(activity_id = id).values()
+    login_request = Request.objects.filter(activity_id = id, user=logged_in_user).values()
     form = RequestForm(instance=activity)
     context = {
         'logged_in_user': logged_in_user,
@@ -103,7 +104,8 @@ def view_activity(request, id):
         'activity': activity,
         'profile': profile,
         'form': form,
-        'requests':requests
+        'requests':requests,
+        'login_request': login_request,
     }
     return render(request, 'activities/activity_detail.html', context)
 
