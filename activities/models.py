@@ -17,8 +17,7 @@ class Activity(models.Model):
     id = models.AutoField(primary_key=True)
     host = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
-        related_name="activity")
+        on_delete=models.CASCADE)
     name = models.CharField(max_length=254, null=False, blank=False)
     start_datetime = models.DateTimeField()
     end_time = models.TimeField()
@@ -36,7 +35,7 @@ class Activity(models.Model):
 
 
 class Request(models.Model):
-    activity = models.ForeignKey(Activity,null=False,blank=False,on_delete=models.CASCADE)
+    activity = models.ForeignKey(Activity,null=False,blank=False,on_delete=models.CASCADE,related_name="activity")
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="request")
     message = models.TextField(max_length=1000, null=True, blank=True)
     accepted = models.BooleanField(default=False)
