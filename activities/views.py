@@ -127,8 +127,8 @@ def request_activity(request, id):
                 form.save()
             return redirect(reverse(view_activity, args=[
                         activity.id]))
-        else:
-            return render(request, 'errors/permission_denied.html')
+    else:
+        return render(request, 'errors/permission_denied.html')
 
 def request_history(request):
     account = get_usertype(request, request.user)

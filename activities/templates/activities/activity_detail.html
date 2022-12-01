@@ -39,6 +39,7 @@
                 </div>
             </div>
         </div>
+      {% if account.account_type == 'Elderly Member' %}
         <div class="d-flex justify-content-end m-5">
             <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Request Listing
@@ -73,6 +74,7 @@
     </div>
   </div>
         </div>
+        {% endif %}
         
     </div>
 
