@@ -4,42 +4,42 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6 overlay-dark">
+        <div class="col-6 d-sm-none d-md-block overlay-dark">
         </div>
-        <div class="col-6">
+        <div class="col-sm-12 col-md-6 col-lg-6">
             <h1 class="py-5">Sign Up</h1>
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
               {% csrf_token %}
               <div class="row">
-                <div class="col-6">
+                <div class="col-sm-12 col-md 6 col-lg-6">
                     <label class="mt-2">Account Type</label>
                     <div>{{ form.account_type}}</div>
                 </div>
-                <div class="col-6">
+                <div class="col-sm-12 col-md 6 col-lg-6">
                     <label class="mt-2">Username</label>
                     <div>{{ form.username}}</div>
                 </div>
-                <div class="col-6 mt-2">
+                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
                     <label>Email Address</label>
                     <div>{{ form.email }}</div>
                 </div>
-                <div class="col-6 mt-2">
+                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
                     <label>Phone Number</label>
                     <div>{{ form.phone_number }}</div>
                 </div>
-                <div class="col-6 mt-2">
+                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
                     <label>First Name</label>
                     <div>{{ form.first_name }}</div>
                 </div>
-                <div class="col-6 mt-2">
+                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
                     <label>Last Name</label>
                     <div>{{ form.last_name }}</div>
                 </div>
-                <div class="col-6 mt-2">
+                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
                     <label>Password</label>
                     <div>{{ form.password1 }}</div>
                 </div>
-                <div class="col-6 mt-2">
+                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
                     <label>Password (again)</label>
                     <div>{{ form.password2 }}</div>
                 </div>
