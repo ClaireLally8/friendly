@@ -1,9 +1,11 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
-from django.db.models import Exists, OuterRef
-from .forms import ActivityForm, RequestForm
-from .models import Activity, Request
 
+from .forms import ActivityForm
+from .models import Activity
 from .helpers import get_userprofile, get_usertype
+
+from activity_requests.models import Request
+from activity_requests.forms import RequestForm
 
 from datetime import date, datetime
 from django.core.paginator import Paginator
@@ -93,6 +95,7 @@ def view_activity(request, id):
     logged_in_user = request.user
     profile = get_userprofile(request, logged_in_user)
     account_type = get_usertype(request, logged_in_user)
+    requests = Request.objects.filter(activity_id = id).values()
     form = RequestForm(instance=activity)
     context = {
         'logged_in_user': logged_in_user,
@@ -100,6 +103,7 @@ def view_activity(request, id):
         'activity': activity,
         'profile': profile,
         'form': form,
+        'requests':requests
     }
     return render(request, 'activities/activity_detail.html', context)
 
@@ -115,32 +119,3 @@ def my_activities(request):
         }
         return render(request, 'activities/my_activities.html', context)
     return render(request, 'errors/permission_denied.html')
-
-def request_activity(request, id):
-    account = get_usertype(request, request.user)
-    if account.account_type == 'Elderly Member':
-        if request.method == "POST":
-            form = RequestForm(data=request.POST)
-            activity = get_object_or_404(Activity, id=id)
-            if form.is_valid():
-                form.instance.user = request.user
-                form.instance.activity = activity
-                form.save()
-            return redirect(reverse(view_activity, args=[
-                        activity.id]))
-    else:
-        return render(request, 'errors/permission_denied.html')
-
-def request_history(request):
-    account = get_usertype(request, request.user)
-    if account.account_type == 'Elderly Member':
-        requests = Request.objects.filter(user=request.user).values()
-        activities = Activity.objects.prefetch_related('activity')
-        context = {
-            'requests': requests,
-            'activities':activities,
-            'account' : account,
-        }
-        return render(request, 'activities/request_history.html', context)
-   
-

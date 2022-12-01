@@ -8,6 +8,4 @@ urlpatterns = [
     path('new/', views.create_activity, name='create-activity'),
     path('edit/<int:id>', views.edit_activity, name='edit-activity'),
     path('delete/<int:id>', views.delete_activity, name='delete-activity'),
-    path('request/<int:id>', views.request_activity, name='request-activity'),
-    path('request-history/', views.request_history, name='request-history'),
 ]

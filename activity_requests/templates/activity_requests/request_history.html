@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    {% if accepted %}
+    <h1>Your Accepted Requests</h1>
+    <div class="overlay-dark p-4">
+    <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows the two next activities that are available</span>">
+        {% for request in accepted %}
+        {% for activity in activities %}
+            {% if request.activity_id == activity.id %}
+                {% if request.accepted == True %}
+                {% include 'includes/activity_list.html' with activity=activity %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% elif pending %}
+    <h1>Your Pending Requests</h1>
+    <div class="overlay-dark p-4">
+    <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows the two next activities that are available</span>">
+        {% for request in pending %}
+        {% for activity in activities %}
+            {% if request.activity_id == activity.id %}
+                {% if request.accepted == False %}
+                {% include 'includes/activity_list.html' with activity=activity %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endif %}
+    
+</div>
+{% endblock %}

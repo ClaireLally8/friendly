@@ -1,11 +1,6 @@
 import uuid
 from django.db import models
-from django.conf import settings
-
 from django.contrib.auth.models import User
-from profiles.models import UserProfile
-
-from datetime import datetime, date
 
 from profiles.helpers import COUNTY_CHOICES
 
@@ -32,13 +27,3 @@ class Activity(models.Model):
 
     def __str__(self):
         return str(self.id)
-
-
-class Request(models.Model):
-    activity = models.ForeignKey(Activity,null=False,blank=False,on_delete=models.CASCADE,related_name="activity")
-    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="request")
-    message = models.TextField(max_length=1000, null=True, blank=True)
-    accepted = models.BooleanField(default=False)
-
-    def __str__(self):
-        return str(self.activity.id)

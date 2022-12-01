@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'profiles',
     'activities',
+    'activity_requests',
 
     'crispy_forms',
     'storages',

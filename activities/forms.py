@@ -1,6 +1,6 @@
 from datetime import date
 from django import forms
-from .models import Activity, Request
+from .models import Activity
 
 from .widgets import DateTimePickerInput, TimePickerInput
 
@@ -26,11 +26,3 @@ class ActivityForm(forms.ModelForm):
         super(ActivityForm, self).__init__(*args, **kwargs)
         # input_formats to parse HTML5 datetime-local input to datetime field
         self.fields['start_datetime'].input_formats = ['%Y-%m-%dT%H:%M']
-
-class RequestForm(forms.ModelForm):
-    class Meta:
-        model = Request
-        fields = ('message',)
-        labels = {
-            'message': 'Message to the Poster'
-        }
