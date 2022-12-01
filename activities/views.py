@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.db.models import Exists, OuterRef
 from .forms import ActivityForm, RequestForm
 from .models import Activity, Request
 
@@ -134,12 +135,12 @@ def request_history(request):
     account = get_usertype(request, request.user)
     if account.account_type == 'Elderly Member':
         requests = Request.objects.filter(user=request.user).values()
-
+        activities = Activity.objects.prefetch_related('activity')
         context = {
             'requests': requests,
+            'activities':activities,
             'account' : account,
         }
         return render(request, 'activities/request_history.html', context)
-
-
+   
 
