@@ -43,6 +43,7 @@ def create_activity(request):
     if account.account_type == 'Volunteer':
         if request.method == "POST":
             form = ActivityForm(data=request.POST)
+            print(form.errors)
             if form.is_valid():
                 form.instance.host = request.user
                 form.save()
