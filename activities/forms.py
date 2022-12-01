@@ -21,8 +21,11 @@ class ActivityForm(forms.ModelForm):
         widgets = {
             'start_datetime': DateTimePickerInput(),
             'end_time': TimePickerInput(),
-
         }
+    def __init__(self, *args, **kwargs):
+        super(ActivityForm, self).__init__(*args, **kwargs)
+        # input_formats to parse HTML5 datetime-local input to datetime field
+        self.fields['start_datetime'].input_formats = ['%Y-%m-%dT%H:%M']
 
 class RequestForm(forms.ModelForm):
     class Meta:
