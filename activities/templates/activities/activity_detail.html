@@ -5,9 +5,9 @@
 {% block content %}
 <div class="container mt-5">
     <a href="{% url 'activities' %}"><i class="fas fa-arrow-left mx-2"></i>Back to overview</a>
-    <div class="row mx-5 mt-4">
+    <div class="row mt-4">
         <div class="col-sm-12 col-md-8 col-lg-8 px-5">
-            <h1>{{ activity.name }}</h1>
+            <h1 class="text-start">{{ activity.name }}</h1>
             {% if logged_in_user == activity.host %}
             <a href="{% url 'edit-activity' activity.id %}" class="a-small mx-2">Edit</a>
             <a href="{% url 'delete-activity' activity.id %}" class="a-small mx-2">Delete</a>
@@ -16,7 +16,7 @@
             <h4><strong>{{ activity.host.first_name }} {{ activity.host.last_name }}</strong></h4>
             <p class="my-5">{{ activity.description }}</p>
         </div>
-        <div class="col-sm-12 col-md-4 col-lg-4 mt-5">
+        <div class="col-sm-11 col-md-3 col-lg-3 mt-5">
             <div class="overlay p-3 shadow-4 rounded">
                 <p><i class="far fa-clock px-2"></i>Available from {{ activity.start_datetime }} to {{ activity.end_time }}</p>
                 {% if activity.town %}
@@ -27,8 +27,9 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
+    <div class="row my-5">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <h2 class="my-2">About the host</h2>
             <div class="overlay p-4">
                         <h5>{{ activity.host.first_name }} {{ activity.host.last_name }}</strong></h5>
                         <h6><small>{{ activity.host.username }}</small></h6>
