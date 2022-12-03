@@ -50,6 +50,21 @@ def cancel_request(request, id):
         return redirect(reverse(view_activity, args=[
                             activity.id]))
     return render(request, 'errors/permission_denied.html')
+
+def accept_request(request,id):
+    activity = get_object_or_404(Activity, id=id)
+    requests = get_object_or_404(Request, activity_id=id)
+    if activity.host.id == request.user.id:
+        requests.accepted = True
+        requests.save()
+        activity.available = False
+        activity.save()
+        return redirect(reverse(view_activity, args=[
+                            activity.id]))
+        
+
+
+
    
 
 

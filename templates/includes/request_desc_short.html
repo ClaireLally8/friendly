@@ -13,6 +13,12 @@
             <a class="a-small mx-2" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
                 Cancel Request
             </a>
+          {% elif activity.host.id == user.id %}
+            {% if req.accepted == False %}
+          <a class="a-small mx-2" href="{% url 'accept-request' activity.id %}">
+            Accept Request
+        </a>
+        {% endif %}
             {% endif %}
             <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
