@@ -93,11 +93,11 @@ def delete_activity(request, id):
 def view_activity(request, id):
     activity = get_object_or_404(Activity, id=id)
     logged_in_user = request.user
-    profile = get_userprofile(request, logged_in_user)
+    profile = get_userprofile(request, activity.host)
     account_type = get_usertype(request, logged_in_user)
     requests = Request.objects.filter(activity_id = id).values()
-    login_request = Request.objects.filter(activity_id = id, user=logged_in_user).values()
-    form = RequestForm(instance=activity)
+    login_request = Request.objects.filter(activity_id = id, user=request.user).values()
+    form = RequestForm()
     context = {
         'logged_in_user': logged_in_user,
         'account': account_type,
