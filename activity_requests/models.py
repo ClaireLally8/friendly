@@ -5,10 +5,11 @@ from activities.models import  Activity
 
 
 class Request(models.Model):
-    activity = models.ForeignKey(Activity,null=False,blank=False,on_delete=models.CASCADE,related_name="activity")
-    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="request")
+    req_id = models.AutoField(primary_key=True)
+    activity = models.ForeignKey(Activity,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     message = models.TextField(max_length=1000, null=True, blank=True)
-    accepted = models.BooleanField(default=False)
+    accepted = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
-        return str(self.activity.id)
+        return f'user {self.user.username} on activity {self.activity.host}'
