@@ -67,7 +67,6 @@ def accept_request(request,req_id, id):
     if activity.host.id == request.user.id:
         req.accepted = True
         req.save()
-        update_remaining_requests(id, False)
         activity.available = False
         activity.save()
 

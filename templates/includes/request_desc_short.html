@@ -15,8 +15,10 @@
                 Cancel Request
             </a>
           {% elif activity.host.id == request.user.id %}
-            {% if req.accepted == null %}
+            {% if req.accepted == False and activity.available == False %}
             <a href="{% url 'accept-request' req_id=req.req_id id=activity.id %}">Accept Request</a>
+            {% elif req.accepted == True %}
+            <p class="d-flex align-items-center">You've accepted this request</p>
             {% endif %}
             {% endif %}
             <!-- Modal -->

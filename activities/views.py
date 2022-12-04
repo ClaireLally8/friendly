@@ -98,6 +98,7 @@ def view_activity(request, id):
     form = RequestForm()
     context = {
         'user_account': account_type,
+        'account':account_type,
         'activity': activity,
         'host_profile': host_profile,
         'form': form,

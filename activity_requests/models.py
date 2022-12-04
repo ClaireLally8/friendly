@@ -9,7 +9,7 @@ class Request(models.Model):
     request_activity = models.ForeignKey(Activity,on_delete=models.CASCADE)
     request_user = models.ForeignKey(User,on_delete=models.CASCADE)
     message = models.TextField(max_length=1000, null=True, blank=True)
-    accepted = models.BooleanField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.req_id)
