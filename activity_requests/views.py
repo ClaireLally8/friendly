@@ -1,28 +1,29 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from .forms import  RequestForm
 from .models import Request
+from .helpers import update_remaining_requests
 
 from activities.models import Activity
 from activities.helpers import get_userprofile, get_usertype
 from activities.views import view_activity
 
 
-def request_activity(request, id):
+def request_activity(request, activity_id):
     account = get_usertype(request, request.user)
     if account.account_type == 'Elderly Member':
         if request.method == "POST":
             form = RequestForm(data=request.POST)
-            activity = get_object_or_404(Activity, id=id)
-            requests = Request.objects.filter(request_activity=id, request_user=request.user).values()
+            activity = get_object_or_404(Activity, id=activity_id)
+            requests = Request.objects.filter(request_activity=activity_id, request_user=request.user).values()
             if requests:
                 return redirect(reverse(view_activity, args=[
                             activity.id]))
             else:
                 if form.is_valid():
-                    form.instance.user = request.user
-                    form.instance.activity = activity
+                    form.instance.request_activity = activity
+                    form.instance.request_user = request.user
                     form.save()
-                return redirect(reverse(view_activity, args=[
+                    return redirect(reverse(view_activity, args=[
                             activity.id]))
     else:
         return render(request, 'errors/permission_denied.html')
@@ -31,8 +32,8 @@ def request_history(request):
     account = get_usertype(request, request.user)
     if account.account_type == 'Elderly Member':
         activities = Activity.objects.all()
-        accepted = Request.objects.filter(user=request.user, accepted=True).values()
-        pending = Request.objects.filter(user=request.user, accepted=False).values()
+        accepted = Request.objects.filter(request_user=request.user, accepted=True).values()
+        pending = Request.objects.filter(request_user=request.user, accepted=False).values()
         context = {
             'activities':activities,
             'account' : account,
@@ -43,7 +44,7 @@ def request_history(request):
 
 def cancel_request(request, id):
     activity = get_object_or_404(Activity, id=id)
-    req = get_object_or_404(Request, activity_id=id, user=request.user)
+    req = get_object_or_404(Request, activity_id=id, request_user=request.user)
     if req:
         if req.accepted == True:
             cancel_accepted_request(request, activity, req)
@@ -66,8 +67,10 @@ def accept_request(request,req_id, id):
     if activity.host.id == request.user.id:
         req.accepted = True
         req.save()
+        update_remaining_requests(id, False)
         activity.available = False
         activity.save()
+
         return redirect(reverse(view_activity, args=[
                             activity.id]))
 
