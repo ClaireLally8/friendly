@@ -46,7 +46,6 @@ def create_activity(request):
     if account.account_type == 'Volunteer':
         if request.method == "POST":
             form = ActivityForm(data=request.POST)
-            print(form.errors)
             if form.is_valid():
                 form.instance.host = request.user
                 form.save()
@@ -96,7 +95,6 @@ def view_activity(request, id):
     account_type = get_usertype(request, request.user)
     activity_requests = Request.objects.filter(request_activity=id)
     login_user_request = Request.objects.filter(request_user=request.user, request_activity=id)
-    print(login_user_request)
     form = RequestForm()
     context = {
         'user_account': account_type,
