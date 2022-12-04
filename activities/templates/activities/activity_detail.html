@@ -8,7 +8,7 @@
     <div class="row mt-4">
         <div class="col-sm-12 col-md-8 col-lg-8 px-5">
             <h1 class="text-start">{{ activity.name }}</h1>
-            {% if logged_in_user == activity.host %}
+            {% if request.user == activity.host %}
               <a href="{% url 'edit-activity' activity.id %}" class="a-small mx-2">Edit</a>
               <a href="{% url 'delete-activity' activity.id %}" class="a-small mx-2">Delete</a>
             {% endif %}
@@ -33,17 +33,17 @@
             <div class="overlay p-4">
                         <h5>{{ activity.host.first_name }} {{ activity.host.last_name }}</strong></h5>
                         <h6><small>{{ activity.host.username }}</small></h6>
-                        {% if profile.bio %}
-                        <p class="dark-text">{{ profile.bio }}</p>
+                        {% if host_profile.bio %}
+                        <p class="dark-text">{{ host_profile.bio }}</p>
                         {% endif %}
                 </div>
             </div>
         </div>
-      {% if account.account_type == 'Elderly Member' %}
-        {% if login_request %}
+      {% if user_account.account_type == 'Elderly Member' %}
+        {% if login_user_request %}
         <h2>Your Request Details</h2>
         <div class="overlay-dark p-4 mb-5">
-          {% for req in login_request %}
+          {% for req in login_user_request %}
           {% include 'includes/request_desc_short.html' with req=req activity=activity %}
           {% endfor %}
         </div>
@@ -51,14 +51,14 @@
           {% include 'includes/request_modal.html' with activity=activity form=form %}
         {% endif %}
       
-        {% elif account.account_type == 'Volunteer' %}
-          {% if logged_in_user == activity.host %}
-            {% if requests %}
-              {% for req in requests %}
+        {% elif user_account.account_type == 'Volunteer' %}
+          {% if request.user == activity.host %}
+            {% if activity_requests %}
+              {% for req in activity_requests %}
                 {% include 'includes/request_desc_short.html' with req=req activity=activity %}
-              {% endfor%}
+              {% endfor %}
             {% else %}
-              <h2>There are no current requests on this activity</h2>
+              <h2>There are no current activity_requests on this activity</h2>
             {% endif %}
           {% endif %}
         {% endif %}

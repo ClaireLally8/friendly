@@ -13,7 +13,7 @@ def request_activity(request, id):
         if request.method == "POST":
             form = RequestForm(data=request.POST)
             activity = get_object_or_404(Activity, id=id)
-            requests = Request.objects.filter(activity_id=activity.id, user=request.user).values()
+            requests = Request.objects.filter(request_activity=id, request_user=request.user).values()
             if requests:
                 return redirect(reverse(view_activity, args=[
                             activity.id]))
@@ -30,7 +30,7 @@ def request_activity(request, id):
 def request_history(request):
     account = get_usertype(request, request.user)
     if account.account_type == 'Elderly Member':
-        activities = Activity.objects.prefetch_related('activity')
+        activities = Activity.objects.all()
         accepted = Request.objects.filter(user=request.user, accepted=True).values()
         pending = Request.objects.filter(user=request.user, accepted=False).values()
         context = {
@@ -42,26 +42,34 @@ def request_history(request):
         return render(request, 'activity_requests/request_history.html', context)
 
 def cancel_request(request, id):
-    account = get_usertype(request, request.user)
     activity = get_object_or_404(Activity, id=id)
-    request = get_object_or_404(Request, activity_id=id, user=request.user)
-    if request:
-        request.delete()
-        return redirect(reverse(view_activity, args=[
-                            activity.id]))
+    req = get_object_or_404(Request, activity_id=id, user=request.user)
+    if req:
+        if req.accepted == True:
+            cancel_accepted_request(request, activity, req)
+        else:
+            req.delete()
+            return redirect(reverse(view_activity, args=[
+                                activity.id]))
     return render(request, 'errors/permission_denied.html')
 
-def accept_request(request,id):
+def cancel_accepted_request(request, activity, req):
     activity = get_object_or_404(Activity, id=id)
-    requests = get_object_or_404(Request, activity_id=id)
+    activity.accepted = False
+    req.delete()
+    return redirect(reverse(view_activity, args=[activity.id]))
+
+
+def accept_request(request,req_id, id):
+    req =  get_object_or_404(Request, req_id=req_id)
+    activity = get_object_or_404(Activity,id=id)
     if activity.host.id == request.user.id:
-        requests.accepted = True
-        requests.save()
+        req.accepted = True
+        req.save()
         activity.available = False
         activity.save()
         return redirect(reverse(view_activity, args=[
                             activity.id]))
-        
 
 
 
