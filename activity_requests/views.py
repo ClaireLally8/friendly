@@ -1,7 +1,6 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from .forms import  RequestForm
 from .models import Request
-from .helpers import update_remaining_requests
 
 from activities.models import Activity
 from activities.helpers import get_userprofile, get_usertype

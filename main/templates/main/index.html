@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row d-flex align-items-center">
+        <div class="col-sm-12 col-md-6 col-lg-6 order-md-last">
+            <img class="img-fluid" src="{% static 'images/index-main.png' %}">
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 order-md-first">
+            <h1>Friendly</h1>
+            <h4>Offering social support for those who need it most.</h4>
+        </div>
+    </div>
+</div>
+<div class="container-fluid overlay p-5">
+    <div class="row">
+        <div class="col-4">
+            <div class="card p-5">
+                <h5 class="text-center pb-3">For Volunteers</h5>
+                <p>Post your availabilty for elderly members to see. By giving you receive the benefits of a new friendships and the knowledge that you are having a meaningful impact on an older person’s life.</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <img class="img-fluid" src="{% static 'images/small-card.png' %}">
+        </div>
+        <div class="col-4">
+            <div class="card p-5">
+                <h5 class="text-center pb-3">For Elderly People</h5>
+                <p>Review volunteers available times, and send a requet to do something together! We provide support, social engagement, inter-generational activities and community-based services.</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'main',
     'profiles',
     'activities',
     'activity_requests',
