@@ -57,6 +57,14 @@
       {% endblock %}
 
     </main>
+      {% if request.user.is_authenticated %}
+      <p>To be created</p>
+    {% else %}
+    <footer class="text-center text-lg-start bg-light pt-2 mt-5">
+    {% include 'includes/footer_anon.html' %}
+  </footer>
+    {% endif %}
+
 
     {% block postloadjs %}
     {% endblock %}

@@ -10,16 +10,32 @@
         <div class="col-sm-12 col-md-6 col-lg-6 order-md-first">
             <h1>Friendly</h1>
             <h4>Offering social support for those who need it most.</h4>
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-4 my-3">
+                    <button class="btn btn-primary me-5 py-2 btn-block" href="">Learn More</button>  
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="container-fluid overlay p-5 my-4">
+<div class="container overlay p-3 my-4">
+    <div class="row d-flex align-items-center">
+        <div class="col-sm-12 col-md-4 col-lg-4 offset-lg-1 offset-md-1">
+            <h2>Uniting the Local Community</h2>
+            <p>Our Vision is an Ireland where older people can can remain strongly connected to their local communities.</p><p>Our mission is to support positive ageing throughout Ireland's aging population. </p>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4  offset-lg-1 offset-md-1">
+            <img class="img-fluid my-5" src="{% static 'images/coffee-break.svg' %}">
+        </div>
+        
+    </div>
+</div>
+<div class="container-fluid p-5 my-4">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
             <div class="card p-5">
                 <h5 class="text-center pb-3">For Volunteers</h5>
                 <p>Post your availabilty for elderly members to see. By giving you receive the benefits of a new friendships and the knowledge that you are having a meaningful impact on an older person’s life.</p>
-                <a class="mb-2 mt-3 text-end" href="">Read More</a>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4 my-2 d-none d-lg-block d-flex align-items-stretch">
@@ -29,10 +45,19 @@
             <div class="card p-5">
                 <h5 class="text-center pb-3">For Elderly People</h5>
                 <p>Review volunteers available times, and send a requet to do something together! We provide support, social engagement, inter-generational activities and community-based services.</p>
-                <a class="mb-2 mt-3 text-end" href="">Read More</a>
             </div>
         </div>
+    </div> 
+</div>
+<div class="container overlay p-3 my-4">
+    <div class="row d-flex align-items-center">
+        <div class="col-sm-12 col-md-4 col-lg-4 offset-lg-1 offset-md-1">
+            <img class="img-fluid my-5" src="{% static 'images/accessibility.svg' %}">
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4  offset-lg-1 offset-md-1">
+            <h2>Accessibility is in our core</h2>
+            <p>Friendly was created with accessibility in mind, ensuring that all of our users, of any age and background can easily use our site. </p>
+        </div>
     </div>
-    
 </div>
 {% endblock %}
