@@ -10,6 +10,14 @@
   --primary-font: "Source Sans Pro";
   --heading-font: "Bebas Neue";
 }
+.contained {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
 h1{
   font-family: var(--heading-font);
   color:var(--dark-blue);
@@ -122,7 +130,7 @@ select {
   color:var(--grey);
 }
 .input-wide {
-  width:300px;
+  max-width:300px;
 }
 .secondaryAction {
   color:var(--green);
@@ -148,9 +156,11 @@ select {
 }
 .overlay{
   background-color:var(--blue);
+  height:100vh;
 }
 .overlay-dark{
   background-color:var(--dark-blue);
+  height:100vh;
 }
 .enabled {
   color:var(--grey);

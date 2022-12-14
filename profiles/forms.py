@@ -30,7 +30,7 @@ class UserSignUpForm(SignupForm):
         del self.fields['password2'].widget.attrs['placeholder']
 
         self.fields['username'].widget.attrs.update({
-            'class': 'required input-wide',
+            'class': 'required input-wide user-input',
         })
 
         self.fields['first_name'].widget.attrs.update({

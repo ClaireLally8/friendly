@@ -41,34 +41,36 @@
   </head>
 
   <body>
-    <header>
-    {% block page_header %}
-    {% endblock %}
-    {% if request.user.is_authenticated %}
-    {% include 'includes/sidenav.html' %}
-    {% else %}
-    {% include 'includes/navbar_anon.html' %}
-    {% endif %}
-  </header>
-    <main>
-    {% include 'includes/messages.html'%}
-
-      {% block content %}
-      {% endblock %}
-
-    </main>
-      {% if request.user.is_authenticated %}
-      <p>To be created</p>
-    {% else %}
-    <footer class="text-center text-lg-start bg-light pt-2 mt-5">
-    {% include 'includes/footer_anon.html' %}
-  </footer>
-    {% endif %}
-
-
-    {% block postloadjs %}
-    {% endblock %}
+    <div class="contained">
+      <header>
+        {% block page_header %}
+        {% endblock %}
+        {% if request.user.is_authenticated %}
+        {% include 'includes/sidenav.html' %}
+        {% else %}
+        {% include 'includes/navbar_anon.html' %}
+        {% endif %}
+      </header>
+        <main>
+        {% include 'includes/messages.html'%}
     
+          {% block content %}
+          {% endblock %}
+    
+        </main>
+          {% if request.user.is_authenticated %}
+          <p>To be created</p>
+        {% else %}
+        <footer class="text-center text-lg-start bg-light pt-2">
+        {% include 'includes/footer_anon.html' %}
+      </footer>
+        {% endif %}
+    
+    
+        {% block postloadjs %}
+        {% endblock %}
+        
+    </div>
   </body>
 
 </html>

@@ -1,33 +1,30 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
-{% load i18n %}
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="col-sm-12 col-md-6 col-lg-6 pb-5">
           <h1 class="py-5 text-center">Login</h1>
-          <div class="ms-5 px-3 d-flex justify-content-center">
-                <form class="login" method="POST" action="{% url 'account_login' %}">
-                  {% csrf_token %}
-                  <label>Email Address</label>
-                  <div class="mb-3">{{ form.login }}</div>
-                  <label>Password</label>
-                  <div class="mb-3">{{ form.password}}</div>
-                  {% if redirect_field_value %}
-                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                  {% endif %}
-                  <div>
-                    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
-                  </div>
-                  <button class="primaryAction shadow-3 px-5 py-2 my-4" type="submit">Login</button>
-                  <p class="short-par">If you have not created an account yet, <br>then please
-                    <a class="par-link" href="{{ signup_url }}">sign up</a> first.</p>
-                </form>
+          <div class="ms-5 px-3 d-flex align-items-center justify-content-center">
+              <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <div class="mb-3">{{ form.login | as_crispy_field }}</div>
+                <div class="mb-3">{{ form.password | as_crispy_field }}</div>
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div>
+                  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+                </div>
+                <button class="primaryAction shadow-3 px-5 py-2 my-4" type="submit">Login</button>
+                <p class="short-par">If you have not created an account yet, <br>then please
+                  <a class="par-link" href="{{ signup_url }}">sign up</a> first.</p>
+              </form>
           </div>
 
         </div>
-                <div class="col-6 d-sm-none d-md-block overlay">
-        </div>
+        <div class="col-sm-12 col-md-6 d-none d-md-block d-lg-block d-xl-block overlay pb-5"></div>
     </div>
 </div>
 

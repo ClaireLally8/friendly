@@ -1,71 +1,63 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
-{% load i18n %}
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6 d-sm-none d-md-block overlay-dark">
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <h1 class="py-5">Sign Up</h1>
-            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-              {% csrf_token %}
-              <div class="row">
-                <div class="col-sm-12 col-md 6 col-lg-6">
-                    <label class="mt-2">Account Type</label>
-                    <div>{{ form.account_type}}</div>
-                </div>
-                <div class="col-sm-12 col-md 6 col-lg-6">
-                    <label class="mt-2">Username</label>
-                    <div>{{ form.username}}</div>
-                </div>
-                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
-                    <label>Email Address</label>
-                    <div>{{ form.email }}</div>
-                </div>
-                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
-                    <label>Phone Number</label>
-                    <div>{{ form.phone_number }}</div>
-                </div>
-                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
-                    <label>First Name</label>
-                    <div>{{ form.first_name }}</div>
-                </div>
-                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
-                    <label>Last Name</label>
-                    <div>{{ form.last_name }}</div>
-                </div>
-                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
-                    <label>Password</label>
-                    <div>{{ form.password1 }}</div>
-                </div>
-                <div class="col-sm-12 col-md 6 col-lg-6 mt-2">
-                    <label>Password (again)</label>
-                    <div>{{ form.password2 }}</div>
-                </div>
-                    </div>
-                    {% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <div class="alert alert-error">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-error">
-            <strong>{{ error|escape }}</strong>
-        </div>
-    {% endfor %}
-{% endif %} 
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <div class="mt-5 d-flex justify-content-center">
-                <button class="primaryAction shadow-3 px-5 py-2 my-4" type="submit">Sign Up</button>
+        <div class="col-sm-12 col-md-6 d-none d-md-block d-lg-block d-xl-block overlay-dark pb-5"></div>
+        <div class="col-sm-12 col-md-6 col-lg-6 pb-5">
+            <h1 class="py-5 text-center">Sign Up</h1>
+            <div class="d-flex justify-content-center align-items-center ">            
+                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                <div class="row d-flex justify-content-center">
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div>{{ form.account_type | as_crispy_field }}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div>{{ form.username | as_crispy_field }}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-2">
+                      <div>{{ form.email | as_crispy_field }}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-2">
+                      <div>{{ form.phone_number | as_crispy_field }}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-2">
+                      <div>{{ form.first_name | as_crispy_field }}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-2">
+                      <div>{{ form.last_name | as_crispy_field }}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-2">
+                      <div>{{ form.password1 | as_crispy_field }}</div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-2">
+                      <div>{{ form.password2 | as_crispy_field }}</div>
+                  </div>
+                      </div>
+                      {% if form.errors %}
+      {% for field in form %}
+          {% for error in field.errors %}
+              <div class="alert alert-error">
+                  <strong>{{ error|escape }}</strong>
               </div>
-              <p class="short-par text-center">Already have an account? <br>You can login <a class="par-link" href="{{ login_url }}">here</a>.</p>
-            </form>
+          {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+          <div class="alert alert-error">
+              <strong>{{ error|escape }}</strong>
+          </div>
+      {% endfor %}
+  {% endif %} 
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="mt-5 d-flex justify-content-center">
+                  <button class="primaryAction shadow-3 px-5 py-2 my-4" type="submit">Sign Up</button>
+                </div>
+                <p class="short-par text-center">Already have an account? <br>You can login <a class="par-link" href="{{ login_url }}">here</a>.</p>
+              </form></div>
             </div>
     </div>
 </div>
