@@ -157,11 +157,12 @@ select {
 }
 .overlay{
   background-color:var(--blue);
-  height:100vh;
 }
 .overlay-dark{
   background-color:var(--dark-blue);
-  height:100vh;
+}
+.full-screen{
+  height:100vh
 }
 .enabled {
   color:var(--grey);
