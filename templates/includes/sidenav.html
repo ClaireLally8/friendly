@@ -16,7 +16,13 @@
         {% endif %}
       </div>
       <div class="menubarfooter">
-        <p><a class="navbaritems" href="{% url 'account_logout' %}">Logout</a></p>
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+          {% endif %}
+          <button type="submit" class="navbaritems logout-button">Logout</button>
+        </form>
         <p><small>You're logged in as {{ request.user.username }}</small></p>
       </div>
     </div>

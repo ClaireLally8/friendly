@@ -28,7 +28,10 @@ ul {
     font-family: "Roboto";
     font-size: 16px;
 }
-
+.logout-button {
+  border:none;
+  background-color: var(--grey);
+}
 .navbaritems:hover {
     text-decoration: underline;
     color:var(--dark-blue);
