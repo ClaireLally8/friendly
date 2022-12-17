@@ -22,7 +22,7 @@ def profile(request):
     context = {
         'user': user,
         'profile': profile,
-        'user_type': user_type,
+        'account': user_type,
         'form': form
     }
     return render(request, 'profiles/profile_overview.html', context)
