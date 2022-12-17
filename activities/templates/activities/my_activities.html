@@ -6,9 +6,75 @@
     <h1 class="mt-5 mx-5 mb-2">Your Activities</h1>
     <a class="mx-5 mb-2" href="{% url 'create-activity' %}"><i class="fas fa-plus mx-2"></i>Post a new activity</a>
 <div class="container-fluid px-5 my-5">
-    {% for activity in activities %}
-    {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
-{% endfor %}
+<div class="accordion" id="accordionExample">
+    {% if today_activities %}
+        <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Today's Activities
+            </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+            <div class="accordion-body">
+            {% for activity in today_activities %}
+                {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+        {% endif %}
+    {% if available_activities %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Available Activities</button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
+            <div class="accordion-body">
+            {%for activity in available_activities %}
+                {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if accepted_activities %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+            <button
+                class="accordion-button collapsed"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+            >
+                Accepted Activities
+            </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
+            <div class="accordion-body">
+                {%for activity in accepted_activities %}
+            {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
+        {% endfor %}
+            </div>
+        </div>
+
+        </div>
+    {% endif %}
+    {% if expired_activities %}
+        <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Expired Activities
+            </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-mdb-parent="#accordionExample">
+            <div class="accordion-body">
+                {% for activity in expired_activities %}
+                {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
+            {% endfor %}
+            </div>
+            </div>
+        </div>
+    {% endif %}
 </div>
 </div>
+</div>
+
 {% endblock %}
