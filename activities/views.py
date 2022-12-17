@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 
 from .forms import ActivityForm
 from .models import Activity
-from .helpers import get_userprofile, get_usertype
+from .helpers import get_userprofile, get_usertype, update_expired
 
 from activity_requests.models import Request
 from activity_requests.forms import RequestForm
@@ -12,6 +12,7 @@ from django.core.paginator import Paginator
 
 
 def activities(request):
+    update_expired()
     page_number = request.GET.get('page')
     today = date.today()
     now = datetime.now()
@@ -110,12 +111,24 @@ def view_activity(request, id):
 
 def my_activities(request):
     account = get_usertype(request, request.user)
+    today = date.today()
+    now = datetime.now()
+    user = request.user
     if account.account_type == 'Volunteer':
-        activities = Activity.objects.filter(host=request.user).values()
-        activities = activities.order_by('start_datetime')
+        all_activities = Activity.objects.filter(host=user).values().order_by('start_datetime')
+        today_activities = all_activities.filter(available=True, start_datetime__date=today, active=True).values()
+        available_activities = all_activities.filter(available=True, active=True).values()
+        accepted_activities = all_activities.filter(available=False, active=True).values()
+        expired_activities = all_activities.filter(active=False).values()
+
         context = {
-            'activities': activities,
+            'today_activities': today_activities,
+            'available_activities': available_activities,
+            'accepted_activities': accepted_activities,
+            'expired_activities': expired_activities,
             'account' : account,
+            'date': today,
+            'user': user,
         }
         return render(request, 'activities/my_activities.html', context)
     return render(request, 'errors/permission_denied.html')

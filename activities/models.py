@@ -24,6 +24,8 @@ class Activity(models.Model):
     town = models.CharField(max_length=200, null=True, blank=True)
     description = models.CharField(max_length=140, null=False, blank=False)
     available = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
+
 
     def __str__(self):
         return str(self.id)
