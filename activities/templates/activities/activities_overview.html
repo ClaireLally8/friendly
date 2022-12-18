@@ -3,42 +3,50 @@
 {% block content %}
 {% if featured %}
 <div class="container">
-<h1 class="mt-5 mx-5 mb-2">Available Today</h1>
-<div class="container-fluid px-5">
-    <div class="overlay-dark py-4">
-        <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows the two next activities that are available</span>
-{% for activity in featured %}
-    {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
-{% endfor %}
-</div>
-</div>
-{% endif %}
-<h1 class="mt-5 mx-5 mb-2">All Activities</h1>
-<div class="container-fluid px-5">
-    <div class="overlay-dark pt-4">
-        <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows all activities that are currently available</span>
-    {% for activity in future %}
-        {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
-    {% endfor %}
-    <div class="pagination pages-items px-2">
-        <span class="step-links">
-        {% if future.has_next and future.has_previous %}
-        <a href="?page={{ future.previous_page_number }}" class="enabled">Previous</a>
-        <span class="px-2">|</span>
-        <a href="?page={{ future.next_page_number }}" class="enabled">Next</a>
-        {% elif future.has_next and not future.has_previous%}
-        <span class="disabled">Previous</span>
-        <span class="px-2">|</span>
-        <a href="?page={{ future.next_page_number }}" class="enabled">Next</a>
-        {% elif not future.has_next and future.has_previous%}
-        <a href="?page={{ future.previous_page_number }}" class="enabled">Previous</a>
-        <span class="px-2">|</span>
-        <span class="disabled">Next</span>
-        {% endif %}
-        </span>
-      </div>
-</div>
-</div>
+    <h1 class="mt-5 mx-5 mb-2">Available Today</h1>
+    <div class="container-fluid px-5">
+        <div class="overlay-dark py-4">
+            <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows
+                the two next activities that are available</span>
+            {% for activity in featured %}
+            {% include 'includes/activity_list.html' with activity=activity
+            user=user date=date %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <h1 class="mt-5 mx-5 mb-2">All Activities</h1>
+    <div class="container-fluid px-5">
+        <div class="overlay-dark pt-4">
+            <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows
+                all activities that are currently available</span>
+            {% for activity in future %}
+            {% include 'includes/activity_list.html' with activity=activity
+            user=user date=date %}
+            {% endfor %}
+            <div class="pagination pages-items px-2">
+                <span class="step-links">
+                    {% if future.has_next and future.has_previous %}
+                    <a href="?page={{ future.previous_page_number }}"
+                        class="enabled">Previous</a>
+                    <span class="px-2">|</span>
+                    <a href="?page={{ future.next_page_number }}"
+                        class="enabled">Next</a>
+                    {% elif future.has_next and not future.has_previous%}
+                    <span class="disabled">Previous</span>
+                    <span class="px-2">|</span>
+                    <a href="?page={{ future.next_page_number }}"
+                        class="enabled">Next</a>
+                    {% elif not future.has_next and future.has_previous%}
+                    <a href="?page={{ future.previous_page_number }}"
+                        class="enabled">Previous</a>
+                    <span class="px-2">|</span>
+                    <span class="disabled">Next</span>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

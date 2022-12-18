@@ -1,29 +1,30 @@
 {% load static %}
 <div class="container-fluid">
-    <div id="hamburgerBtn">&#9776;</div>
-    <div id="sidemenunav" class="shadow-1">
-      <div class="navbarbrand">
-       <a class="navbar-brand justify-content-center mb-2" href="#"><img src="{% static 'images/logo.png' %}" height="65" class="pr-4" alt="Site logo"></a>
-       <p><a class="navbaritems" href="{% url 'profile' %}">Profile</a></p>
-      </div>
-      <div>
-        <p><a class="navbaritems" href=""></a></p>
-        <p><a class="navbaritems" href="{% url 'activities' %}">Activities</a></p>
-        {% if account.account_type == 'Volunteer'%}
-        <p><a class="navbaritems" href="{% url 'my-activities' %}">My Activities</a></p>
-        {% elif account.account_type == 'Elderly Member'%}
-        <p><a class="navbaritems" href="{% url 'request-history' %}">My Requests</a></p>
+  <div id="hamburgerBtn">&#9776;</div>
+  <div id="sidemenunav" class="shadow-1">
+    <div class="navbarbrand">
+      <a class="navbar-brand justify-content-center mb-2" href="#"><img src="{% static 'images/logo.png' %}" height="65" class="pr-4" alt="Site logo"></a>
+      <p><a class="navbaritems" href="{% url 'profile' %}">Profile</a></p>
+    </div>
+    <div>
+      <p><a class="navbaritems" href=""></a></p>
+      <p><a class="navbaritems" href="{% url 'activities' %}">Activities</a></p>
+      {% if account.account_type == 'Volunteer'%}
+      <p><a class="navbaritems" href="{% url 'my-activities' %}">My Activities</a></p>
+      {% elif account.account_type == 'Elderly Member'%}
+      <p><a class="navbaritems" href="{% url 'request-history' %}">My Requests</a></p>
+      {% endif %}
+    </div>
+    <div class="menubarfooter">
+      <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{
+          redirect_field_value }}"/>
         {% endif %}
-      </div>
-      <div class="menubarfooter">
-        <form method="post" action="{% url 'account_logout' %}">
-          {% csrf_token %}
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-          {% endif %}
-          <button type="submit" class="navbaritems logout-button">Logout</button>
-        </form>
-        <p><small>You're logged in as {{ request.user.username }}</small></p>
-      </div>
+        <button type="submit" class="navbaritems logout-button">Logout</button>
+      </form>
+      <p><small>You're logged in as {{ request.user.username }}</small></p>
     </div>
   </div>
+</div>

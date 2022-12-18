@@ -18,9 +18,6 @@
 main {
   flex: 1;
 }
-body {
-  background-color: #FBFCFB;
-}
 h1{
   font-family: var(--heading-font);
   color:var(--dark-blue);

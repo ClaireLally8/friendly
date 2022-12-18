@@ -1,36 +1,38 @@
 {% load static %}
 <div class="card p-2 my-2 mx-4">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-2 d-flex align-items-center">
-                <h2 class="my-3">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-2 d-flex align-items-center">
+            <h2 class="my-3">
                 {% if activity.start_datetime.date == date %}
-                    {{ activity.start_datetime.time}}
+                {{ activity.start_datetime.time}}
                 {% else %}
-                    {{ activity.start_datetime.date }}
+                {{ activity.start_datetime.date }}
                 {% endif %}
-                </h2>
-                    
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-8">
-                <div class="row">
-                    <div class="col-sm-12 mt-2">
-                        <h5>
-                            {{ activity.name }}
-                        </h5>
-                    </div>
+            </h2>
+
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <div class="row">
+                <div class="col-sm-12 mt-2">
+                    <h5>
+                        {{ activity.name }}
+                    </h5>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
                     <p>
                         {{ activity.location }}
-                    </p> 
-                    </div>
+                    </p>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-2 d-flex align-items-center justify-content-end">
-                <a href="{% url 'view-activity' activity.id %}" class="btn btn-secondary px-4 py-2 shadow-3-strong">
-                    View Listing
-                </a>
-            </div>
         </div>
+        <div class="col-xs-12 col-md-2 d-flex align-items-center
+            justify-content-end">
+            <a href="{% url 'view-activity' activity.id %}" class="btn
+                btn-secondary px-4 py-2 shadow-3-strong">
+                View Listing
+            </a>
+        </div>
+    </div>
 </div>

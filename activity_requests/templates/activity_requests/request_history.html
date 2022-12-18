@@ -5,107 +5,133 @@
 {% block content %}
 <div class="container">
     <h1 class="mt-5 mx-5 mb-2">Your Requests</h1>
-<div class="container-fluid px-5 my-5">
-    {% if accepted %}
-    <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header"><button class="accordion-button" type="button" data-mdb-toggle="collapse"
-            data-mdb-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-    Accepted Requests
-        </button>
-        </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-        <div class="accordion-body overlay-disabled">
-            {% for request in accepted %}
-            {% for activity in activities %}
-                {% if request.request_activity_id == activity.id %}
-                <div class="row bottom-border">
-                    <div class="col-xs-12 col-sm-6 col-md-2 d-flex align-items-center">
-                        {% if activity.start_datetime.date == date %}
-                            <p class="text-light">{{ activity.start_datetime.time}}</p>
-                        {% else %}
-                        <div class="d-flex justify-content-between">
-                            <p class="text-light">{{ activity.start_datetime.time}}
-                                <br><small>{{ activity.start_datetime.date }}</small></p>
+    <div class="container-fluid px-5 my-5">
+        {% if accepted %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header"><button class="accordion-button"
+                        type="button" data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        Accepted Requests
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse
+                    collapse show" aria-labelledby="headingOne">
+                    <div class="accordion-body overlay-disabled">
+                        {% for request in accepted %}
+                        {% for activity in activities %}
+                        {% if request.request_activity_id == activity.id %}
+                        <div class="row bottom-border">
+                            <div class="col-xs-12 col-sm-6 col-md-2 d-flex
+                                align-items-center">
+                                {% if activity.start_datetime.date == date %}
+                                <p class="text-light">{{
+                                    activity.start_datetime.time}}</p>
+                                {% else %}
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-light">{{
+                                        activity.start_datetime.time}}
+                                        <br><small>{{
+                                            activity.start_datetime.date }}</small></p>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-sm-12 mt-2">
+                                        <h5 class="text-light text-capitalize">{{
+                                            activity.name }}</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <p class="text-light text-capitalizes">{{activity.town}},
+                                            Co.{{ activity.location }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 d-flex
+                                align-items-center justify-content-end pe-4">
+                                <a href="{% url 'view-activity' activity.id %}"
+                                    class="btn primaryAction px-4 py-2
+                                    shadow-3-strong">
+                                    View Listing
+                                </a>
+                            </div>
                         </div>
                         {% endif %}
+                        {% endfor %}
+                        {% endfor %}
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="row">
-                            <div class="col-sm-12 mt-2">
-                                <h5 class="text-light text-capitalize">{{ activity.name }}</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                            <p class="text-light text-capitalizes">{{activity.town}}, Co.{{ activity.location }}</p> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-4 d-flex align-items-center justify-content-end pe-4">
-                        <a href="{% url 'view-activity' activity.id %}" class="btn primaryAction px-4 py-2 shadow-3-strong">
-                            View Listing
-                        </a>
-                    </div>
-                </div>
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-        </div>
-        </div>
-    </div>
-    </div>
-    {% endif %}
-    {% if pending %}
-    <div class="accordion" id="accordionExample">
-    <div class="accordion-item mt-3">
-        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-            data-mdb-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-            aria-controls="panelsStayOpen-collapseTwo">Pending Requests
-        </button>
-        </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
-        <div class="accordion-body overlay-disabled">
-    {% for request in pending %}
-        {% for activity in activities %}
-            {% if request.request_activity_id == activity.id %}
-            <div class="row bottom-border">
-                <div class="col-xs-12 col-sm-6 col-md-2 d-flex align-items-center">
-                    {% if activity.start_datetime.date == date %}
-                        <p class="text-light">{{ activity.start_datetime.time}}</p>
-                    {% else %}
-                    <div class="d-flex justify-content-between">
-                        <p class="text-light">{{ activity.start_datetime.time}}
-                            <br><small>{{ activity.start_datetime.date }}</small></p>
-                    </div>
-                    {% endif %}
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="row">
-                        <div class="col-sm-12 mt-2">
-                            <h5 class="text-light text-capitalize">{{ activity.name }}</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                        <p class="text-light text-capitalizes">{{activity.town}}, Co.{{ activity.location }}</p> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-4 d-flex align-items-center justify-content-end pe-4">
-                    <a href="{% url 'view-activity' activity.id %}" class="btn primaryAction px-4 py-2 shadow-3-strong">
-                        View Listing
-                    </a>
                 </div>
             </div>
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
         </div>
+        {% endif %}
+        {% if pending %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item mt-3">
+                <h2 class="accordion-header"><button class="accordion-button
+                        collapsed" type="button" data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">Pending
+                        Requests
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse
+                    collapse show" aria-labelledby="headingTwo">
+                    <div class="accordion-body overlay-disabled">
+                        {% for request in pending %}
+                        {% for activity in activities %}
+                        {% if request.request_activity_id == activity.id %}
+                        <div class="row bottom-border">
+                            <div class="col-xs-12 col-sm-6 col-md-2 d-flex
+                                align-items-center">
+                                {% if activity.start_datetime.date == date %}
+                                <p class="text-light">{{
+                                    activity.start_datetime.time}}</p>
+                                {% else %}
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-light">{{
+                                        activity.start_datetime.time}}
+                                        <br><small>{{
+                                            activity.start_datetime.date }}</small></p>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-sm-12 mt-2">
+                                        <h5 class="text-light text-capitalize">{{
+                                            activity.name }}</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <p class="text-light text-capitalizes">{{activity.town}},
+                                            Co.{{ activity.location }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 d-flex
+                                align-items-center justify-content-end pe-4">
+                                <a href="{% url 'view-activity' activity.id %}"
+                                    class="btn primaryAction px-4 py-2
+                                    shadow-3-strong">
+                                    View Listing
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
+        {% endif %}
     </div>
-    </div>
-    {% endif %}
-</div>
 </div>
 {% endblock %}
