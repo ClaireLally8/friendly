@@ -57,8 +57,6 @@
               {% for req in activity_requests %}
                 {% include 'includes/request_desc_short.html' with req=req activity=activity %}
               {% endfor %}
-            {% else %}
-              <h2>There are no current activity_requests on this activity</h2>
             {% endif %}
           {% endif %}
         {% endif %}

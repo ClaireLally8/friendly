@@ -18,6 +18,9 @@
 main {
   flex: 1;
 }
+body {
+  background-color: #FBFCFB;
+}
 h1{
   font-family: var(--heading-font);
   color:var(--dark-blue);
@@ -151,7 +154,7 @@ select {
   font-family: var(--primary-font);
 }
 .primaryAction {
-  font-family: 'Gilroy-Light';
+  font-family: var(--primary-font);
   background-color: var(--grey);
   color:var(--dark-blue);
   border:none;
@@ -222,7 +225,7 @@ select {
   text-transform: capitalize;
 }
 .bottom-border {
-  border-bottom: 1px solid #FBFCFB;
+  border-top: 1px solid #FBFCFB;
   padding-left:12px;
   padding-bottom:0px;
   padding-top:4px;
