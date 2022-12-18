@@ -30,7 +30,7 @@ def request_activity(request, activity_id):
 def request_history(request):
     account = get_usertype(request, request.user)
     if account.account_type == 'Elderly Member':
-        activities = Activity.objects.all()
+        activities = Activity.objects.filter()
         accepted = Request.objects.filter(request_user=request.user, accepted=True).values()
         pending = Request.objects.filter(request_user=request.user, accepted=False).values()
         context = {
