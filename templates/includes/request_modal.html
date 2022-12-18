@@ -19,13 +19,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Request for {{
-            activity.name }}</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Request for {{ activity.name }}</h5>
           <button type="button" class="btn-close" data-mdb-dismiss="modal"
             aria-label="Close"></button>
         </div>
-        <form action="{% url 'request-activity' activity_id=activity.id %}"
-          method="POST">
+        <form action="{% url 'request-activity' activity_id=activity.id %}" method="POST">
           {% csrf_token %}
           <div class="modal-body">
             {{ form.message | as_crispy_field }}

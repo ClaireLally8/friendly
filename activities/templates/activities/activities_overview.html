@@ -9,8 +9,7 @@
             <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows
                 the two next activities that are available</span>
             {% for activity in featured %}
-            {% include 'includes/activity_list.html' with activity=activity
-            user=user date=date %}
+            {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
             {% endfor %}
         </div>
     </div>
@@ -21,8 +20,7 @@
             <span class="px-2"><i class="fas fa-info-circle pe-2"></i>This shows
                 all activities that are currently available</span>
             {% for activity in future %}
-            {% include 'includes/activity_list.html' with activity=activity
-            user=user date=date %}
+            {% include 'includes/activity_list.html' with activity=activity user=user date=date %}
             {% endfor %}
             <div class="pagination pages-items px-2">
                 <span class="step-links">
