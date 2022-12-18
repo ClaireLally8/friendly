@@ -55,7 +55,7 @@ def create_activity(request):
             form = ActivityForm()
             context = {
                 'form': form,
-                'account':account,
+                'account': account,
             }
             return render(request, 'activities/new_listing.html', context)
     return render(request, 'errors/permission_denied.html')
@@ -95,17 +95,18 @@ def view_activity(request, id):
     host_profile = get_userprofile(request, activity.host)
     account_type = get_usertype(request, request.user)
     activity_requests = Request.objects.filter(request_activity=id)
-    login_user_request = Request.objects.filter(request_user=request.user, request_activity=id)
+    login_user_request = Request.objects.filter(
+        request_user=request.user, request_activity=id)
     form = RequestForm()
     context = {
         'user_account': account_type,
-        'account':account_type,
+        'account': account_type,
         'activity': activity,
         'host_profile': host_profile,
         'form': form,
-        'activity_requests':activity_requests,
+        'activity_requests': activity_requests,
         'login_user_request': login_user_request,
-       }
+    }
     return render(request, 'activities/activity_detail.html', context)
 
 
@@ -115,10 +116,14 @@ def my_activities(request):
     now = datetime.now()
     user = request.user
     if account.account_type == 'Volunteer':
-        all_activities = Activity.objects.filter(host=user).values().order_by('start_datetime')
-        today_activities = all_activities.filter(available=True, start_datetime__date=today, active=True).values()
-        available_activities = all_activities.filter(available=True, active=True).values()
-        accepted_activities = all_activities.filter(available=False, active=True).values()
+        all_activities = Activity.objects.filter(
+            host=user).values().order_by('start_datetime')
+        today_activities = all_activities.filter(
+            available=True, start_datetime__date=today, active=True).values()
+        available_activities = all_activities.filter(
+            available=True, active=True).values()
+        accepted_activities = all_activities.filter(
+            available=False, active=True).values()
         expired_activities = all_activities.filter(active=False).values()
 
         context = {
@@ -126,7 +131,7 @@ def my_activities(request):
             'available_activities': available_activities,
             'accepted_activities': accepted_activities,
             'expired_activities': expired_activities,
-            'account' : account,
+            'account': account,
             'date': today,
             'user': user,
         }

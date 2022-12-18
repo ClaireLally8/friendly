@@ -17,8 +17,7 @@ def get_usertype(request, user):
         return account.first()
     return None
 
+
 def update_expired():
     now = datetime.now()
     Activity.objects.filter(start_datetime__lte=now).update(active=False)
-
-

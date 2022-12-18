@@ -22,6 +22,7 @@ class ActivityForm(forms.ModelForm):
             'start_datetime': DateTimePickerInput(),
             'end_time': TimePickerInput(),
         }
+
     def __init__(self, *args, **kwargs):
         super(ActivityForm, self).__init__(*args, **kwargs)
         self.fields['start_datetime'].input_formats = ['%Y-%m-%dT%H:%M']

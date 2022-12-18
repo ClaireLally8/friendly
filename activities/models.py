@@ -26,6 +26,5 @@ class Activity(models.Model):
     available = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
 
-
     def __str__(self):
         return str(self.id)

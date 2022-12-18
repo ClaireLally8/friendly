@@ -7,8 +7,8 @@ from django.db import models
 from .helpers import COUNTY_CHOICES
 
 ACCOUNT_TYPE = (
-    ('Elderly Member','Elderly Member',),
-    ('Volunteer','Volunteer'),
+    ('Elderly Member', 'Elderly Member',),
+    ('Volunteer', 'Volunteer'),
 )
 
 
@@ -37,7 +37,11 @@ class UserProfile(models.Model):
 
 class UserType(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
-    account_type = models.CharField(choices=ACCOUNT_TYPE, max_length=200,null=False, blank=False)
+    account_type = models.CharField(
+        choices=ACCOUNT_TYPE,
+        max_length=200,
+        null=False,
+        blank=False)
 
     def __str__(self):
         return self.user.username
