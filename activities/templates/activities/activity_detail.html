@@ -9,8 +9,12 @@
         <div class="col-sm-12 col-md-8 col-lg-8 px-5">
             <h1 class="text-start">{{ activity.name }}</h1>
             {% if request.user == activity.host %}
+              {% if req.accepted == False %}
               <a href="{% url 'edit-activity' activity.id %}" class="a-small mx-2">Edit</a>
               <a href="{% url 'delete-activity' activity.id %}" class="a-small mx-2">Delete</a>
+              {% else %}
+              <p><small>You cannot edit or delete this activity as you have accepted a request</small></p>
+              {% endif %}
             {% endif %}
             <h5 class="mt-3">Hosted By</h5>
             <h4><strong>{{ activity.host.first_name }} {{ activity.host.last_name }}</strong></h4>
