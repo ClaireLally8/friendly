@@ -51,24 +51,24 @@ def request_history(request):
             context)
 
 
-def cancel_request(request, id):
+def cancel_request(request, req_id, id):
+    req = get_object_or_404(Request, req_id=req_id)
     activity = get_object_or_404(Activity, id=id)
-    req = get_object_or_404(Request, activity_id=id, request_user=request.user)
     if req:
         if req.accepted:
             cancel_accepted_request(request, activity, req)
         else:
             req.delete()
             return redirect(reverse(view_activity, args=[
-                activity.id]))
+            activity.id]))
     return render(request, 'errors/permission_denied.html')
 
 
 def cancel_accepted_request(request, activity, req):
-    activity = get_object_or_404(Activity, id=id)
     activity.accepted = False
     req.delete()
-    return redirect(reverse(view_activity, args=[activity.id]))
+    return redirect(reverse(view_activity, args=[
+            activity.id]))
 
 
 def accept_request(request, req_id, id):

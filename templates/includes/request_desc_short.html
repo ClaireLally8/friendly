@@ -10,39 +10,14 @@
       <p>{{ req.message }}</p>
     </div>
     <div class="col-xs-12 col-md-2 d-flex justify-content-end align-items-end">
-      {% if req.request_user == request.user %}
-      <a class="a-small mx-2" data-mdb-toggle="modal"
-        data-mdb-target="#exampleModal">
-        Cancel Request
-      </a>
-      {% elif request.user == activity.host  %}
+      {% if request.user == activity.host  %}
       {% if req.accepted == False and activity.available == True %}
-      <a href="{% url 'accept-request' req_id=req.req_id id=activity.id %}">Accept
+      <a href="{% url 'accept-request' req_id=req.req_id id=request_activity.id %}">Accept
         Request</a>
       {% elif req.accepted == True %}
       <p class="d-flex align-items-center">You've accepted this request</p>
       {% endif %}
       {% endif %}
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Are you sure? This
-                cannot be undone</h5>
-              <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                aria-label="Close"></button>
-            </div>
-            <div class="modal-footer d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary"
-                data-mdb-dismiss="modal">Close</button>
-              <a href="{% url 'cancel-request' activity.id %}" class="btn
-                btn-primary">Confirm Cancellation</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@ urlpatterns = [
         views.request_history,
         name='request-history'),
     path(
-        'cancel/<int:id>',
+        'cancel/<int:req_id>/<int:id>',
         views.cancel_request,
         name='cancel-request'),
     path(
