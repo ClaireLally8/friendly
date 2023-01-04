@@ -27,11 +27,10 @@
                             <div class="col-xs-12 col-sm-6 col-md-2 d-flex
                                 align-items-center">
                                 {% if activity.start_datetime.date == date %}
-                                <p class="text-light">{{ activity.start_datetime.time}}</p>
+                                <p class="text-light">{{ activity.start_datetime.time }}</p>
                                 {% else %}
                                 <div class="d-flex justify-content-between">
-                                    <p class="text-light">{{
-                                        activity.start_datetime.time}}
+                                    <p class="text-light">{{ activity.start_datetime.time}}
                                         <br><small>{{ activity.start_datetime.date }}</small></p>
                                 </div>
                                 {% endif %}
@@ -87,12 +86,10 @@
                             <div class="col-xs-12 col-sm-6 col-md-2 d-flex
                                 align-items-center">
                                 {% if activity.start_datetime.date == date %}
-                                <p class="text-light">{{
-                                    activity.start_datetime.time}}</p>
+                                <p class="text-light">{{ activity.start_datetime.time }}</p>
                                 {% else %}
                                 <div class="d-flex justify-content-between">
-                                    <p class="text-light">{{
-                                        activity.start_datetime.time}}
+                                    <p class="text-light">{{ activity.start_datetime.time }}
                                         <br><small>{{ activity.start_datetime.date }}</small></p>
                                 </div>
                                 {% endif %}
