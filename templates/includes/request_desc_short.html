@@ -12,7 +12,7 @@
     <div class="col-xs-12 col-md-2 d-flex justify-content-end align-items-end">
       {% if request.user == activity.host  %}
       {% if req.accepted == False and activity.available == True %}
-      <a href="{% url 'accept-request' req_id=req.req_id id=request_activity.id %}">Accept
+      <a href="{% url 'accept-request' req_id=req.req_id id=activity.id %}">Accept
         Request</a>
       {% elif req.accepted == True %}
       <p class="d-flex align-items-center">You've accepted this request</p>
